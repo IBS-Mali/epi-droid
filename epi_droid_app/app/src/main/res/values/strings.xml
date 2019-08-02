@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">epi_droid_app</string>
+    <string name="app_name">Epi - Collecte</string>
+    <string name="standard_dialog_ok">\"Sta\"</string>
+
+    <!-- Standard Errors -->
+    <string name="error_dialog_title">Erreur !</string>
+    <string name="error_dialog_button_text">Fermer et corriger</string>
+    <string name="error_field_empty">Champs requis</string>
+    <string name="error_field_min_chars">%s caractères minimum</string>
+    <string name="error_field_nopasswd">pas d\'espace, %s caractères mini.</string>
+    <string name="error_field_positive_integer">Entier positif requis</string>
+    <string name="error_sms_not_sent_title">Erreur d\'envoi du SMS</string>
+    <string name="error_sms_not_sent_body">Le SMS n\'a pas pu être envoyé correctement. Vérifiez que vous avez du réseau et du crédit puis réessayez.\n%1$s</string>
+    <string name="app_name_long">Menu Principal</string>
+    <string name="suivi_label">Suivi</string>
+    <string name="register_label">Enregistrement</string>
+
+    <!-- menu items -->
+    <string name="app_version">Version</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="news">Ressources (en ligne)</string>
+    <string name="menu_about">À propos</string>
+    <string name="menu_change_password">Changer mot de passe</string>
+
 </resources>
