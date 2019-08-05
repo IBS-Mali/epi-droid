@@ -19,7 +19,7 @@ public class Constants {
     public static final int SMS_ERROR = 2;
     public static final int SMS_UNKNOWN = 3;
 
-    public static final String server_number = "70062552";
+    public static final String server_number = "76433890";
     public static final String server_url = "http://epitraitement.ml";
     public static final String resource_url = "%1$s/resources";
     public static final String SPACER = " ";
@@ -29,7 +29,7 @@ public class Constants {
     public static final int MIN_CHARS_USERNAME = 3;
     public static final String SMS_FORMAT = "%1$s %2$s %3$s %4$s";
 
-    public static final String SMS_KEYWORD_NUT_WEEKLY = "nut w";
+    public static final String SMS_KEYWORD = "epi";
 
     public static final String SMS_SENT_INTENT = "com.ibs.epi_droid_app.SMS_SENT";
     public static final String SMS_DELIVERED_INTENT = "com.ibs.epi_droid_app.SMS_DELIVERED";
@@ -38,9 +38,10 @@ public class Constants {
     public static final String SMS_CHANGE_PASSWRD = "passwd %1$s %2$s %3$s";
 
     public static final int RESULT_SETTINGS = 1;
-    public static final String DATE_SPACER = "/" ;
+    public static final String DATE_SPACER = "/";
 
     public static final String databaseName = "epidata.db";
+    public static final char sepaData = '-';
 
     public static final String getLogTag(String activity) {
     	return String.format("EPI-Log-%s", activity);

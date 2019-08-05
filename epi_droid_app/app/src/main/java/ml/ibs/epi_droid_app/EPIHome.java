@@ -31,7 +31,6 @@ public class EPIHome extends Activity {
         registerButton = (Button) findViewById(R.id.registerBtn);
         final Activity activity = this;
 
-
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
