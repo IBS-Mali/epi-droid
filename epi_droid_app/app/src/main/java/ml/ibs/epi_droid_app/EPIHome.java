@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.prefs.Preferences;
+//import java.util.prefs.Preferences;
 
 
 public class EPIHome extends Activity {
@@ -40,16 +40,6 @@ public class EPIHome extends Activity {
             }
         });
 
-        suiviButton = (Button) findViewById(R.id.suiviBtn);
-        suiviButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(
-                    getApplicationContext(),
-                    Register.class);
-                startActivity(intent);
-            }
-        });
         suiviButton = (Button) findViewById(R.id.suiviBtn);
         suiviButton.setOnClickListener(new View.OnClickListener(){
             @Override

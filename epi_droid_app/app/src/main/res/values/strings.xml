@@ -2,6 +2,11 @@
     <string name="app_name">Epi - Collecte</string>
     <string name="standard_dialog_ok">\"Sta\"</string>
 
+    <!-- Preferences -->
+    <string name="pref_server_num">Numéro Serveur</string>
+    <string name="pref_server_num_summary">Numéro flotte du serveur </string>
+    <string name="pref_username">Identifiant</string>
+    <string name="pref_username_summary">Identifiant d\'un l\'agent</string>
     <!-- Standard Errors -->
     <string name="error_dialog_title">Erreur !</string>
     <string name="error_dialog_button_text">Fermer et corriger</string>
@@ -21,5 +26,19 @@
     <string name="news">Ressources (en ligne)</string>
     <string name="menu_about">À propos</string>
     <string name="menu_change_password">Changer mot de passe</string>
+
+    <string name="rest_database">Suppression de la données.</string>
+    <string name="rest_confermed">"Êtes-vous certain?"</string>
+    <string name="advanced">Paramètres avancés</string>
+    <string name="summary_reset_db">Appui %d fois pour supprimer la base de données.</string>
+    <string name="msgBegin">Ajouter un article pour commencer</string>
+    <string name="importOk" formatted="false">%s a été importée avec succès depuis \n %s</string>
+    <string name="exportOk" formatted="false">%s a été exportée avec succès sur \n %s</string>
+    <string name="delDB">%s a été supprimée avec succès.</string>
+    <string name="pref_pass_word">Mot de passe</string>
+    <string name="pref_pass_word_summary">Mot de passe du compte d\'utilisateur</string>
+    <string name="locality">Localité</string>
+    <string name="healfEntity">Air de santé</string>
+    <string name="summary_healf_center">Air de santé</string>
 
 </resources>
