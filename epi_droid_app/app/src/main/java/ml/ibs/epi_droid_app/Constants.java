@@ -106,11 +106,8 @@ public class Constants {
 
     public static String buildCompleteSMSText(String smsKeyword, String username,
                                               String password, String smsData) {
-        return String.format(SMS_FORMAT,
-                             smsKeyword,
-                             username,
-                             password,
-                             smsData);
+        return String.format(
+                SMS_FORMAT, smsKeyword, username, password, smsData);
     }
 
     public static String stringFromFloat(float data) {

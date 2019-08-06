@@ -3,27 +3,17 @@ package ml.ibs.epi_droid_app;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -31,9 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by fad on 14/12/14.
- */
+
 public class Utils extends AppCompatActivity {
 
     private static final String TAG = Constants.getLogTag("Utils");
@@ -42,7 +30,6 @@ public class Utils extends AppCompatActivity {
         new AlertDialog.Builder(activity).setTitle(title)
                 .setMessage(message).show();
     }
-
     public static boolean isOnline(Activity activity) {
         ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

@@ -66,7 +66,9 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
     }
 
     /* Abstract methods */
-    protected void setupInvalidInputChecks() {}
+    protected boolean setupInvalidInputChecks() {
+        return false;
+    }
     protected boolean ensureDataCoherence() { return false; }
     protected String buildSMSText() { return ""; }
     protected void storeReportData() {}
