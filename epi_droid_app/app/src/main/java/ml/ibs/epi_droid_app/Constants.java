@@ -42,6 +42,10 @@ public class Constants {
 
     public static final String databaseName = "epidata.db";
 
+
+
+
+
     public static final String getLogTag(String activity) {
     	return String.format("EPI-Log-%s", activity);
     }

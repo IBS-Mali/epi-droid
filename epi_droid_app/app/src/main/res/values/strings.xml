@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Epi - Collecte</string>
     <string name="standard_dialog_ok">\"Sta\"</string>
@@ -14,6 +15,7 @@
     <string name="app_name_long">Menu Principal</string>
     <string name="suivi_label">Suivi</string>
     <string name="register_label">Enregistrement</string>
+    <string name="gestion_label">gestion de stock</string>
 
     <!-- menu items -->
     <string name="app_version">Version</string>
@@ -21,5 +23,6 @@
     <string name="news">Ressources (en ligne)</string>
     <string name="menu_about">À propos</string>
     <string name="menu_change_password">Changer mot de passe</string>
+
 
 </resources>
