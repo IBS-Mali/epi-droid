@@ -1,6 +1,5 @@
 package ml.ibs.epi_droid_app;
 
-
 import android.telephony.SmsMessage;
 
 import java.util.ArrayList;

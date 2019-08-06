@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.prefs.Preferences;
+//import java.util.prefs.Preferences;
 
 
 public class EPIHome extends Activity {
@@ -28,10 +28,7 @@ public class EPIHome extends Activity {
         Log.d(TAG, "onCreate EPIHome");
         setContentView(R.layout.epi_home);
 
-        registerButton = (Button) findViewById(R.id.registerBtn);
-        final Activity activity = this;
-
-
+        registerButton = findViewById(R.id.registerBtn);
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -40,17 +37,7 @@ public class EPIHome extends Activity {
             }
         });
 
-        suiviButton = (Button) findViewById(R.id.suiviBtn);
-        suiviButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(
-                    getApplicationContext(),
-                    Register.class);
-                startActivity(intent);
-            }
-        });
-        suiviButton = (Button) findViewById(R.id.suiviBtn);
+        suiviButton = findViewById(R.id.suiviBtn);
         suiviButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
