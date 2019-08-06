@@ -3,31 +3,46 @@
     package="ml.ibs.epi_droid_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.orm.SugarApp"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".SuiviActivity"
+            android:label="@string/title_activity_suivi"></activity>
+        <activity
+            android:name=".StockActivity"
+            android:label="@string/title_activity_stock" />
 
-        <meta-data android:name="DATABASE" android:value="epi.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="ml.ibs.epi_droid_app" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="epi.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="ml.ibs.epi_droid_app" />
 
-        <activity android:name=".Register"></activity>
-        <activity android:name=".Preferences"></activity>
-        <activity android:name=".EPIAbout"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Preferences" />
+        <activity android:name=".EPIAbout" />
         <activity android:name=".EPIHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

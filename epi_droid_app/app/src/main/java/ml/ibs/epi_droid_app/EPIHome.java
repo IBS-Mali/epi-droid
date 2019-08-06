@@ -18,6 +18,7 @@ public class EPIHome extends Activity {
 
     private Button registerButton;
     private Button suiviButton;
+    private Button stockButton;
 
 
     @Override
@@ -32,7 +33,7 @@ public class EPIHome extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Register.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -43,7 +44,18 @@ public class EPIHome extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(
                     getApplicationContext(),
-                    Register.class);
+                    SuiviActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        stockButton = findViewById(R.id.stockBtn);
+        stockButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                    getApplicationContext(),
+                    StockActivity.class);
                 startActivity(intent);
             }
         });

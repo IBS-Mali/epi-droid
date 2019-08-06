@@ -44,6 +44,69 @@ public class Constants {
     public static final char sepaData = '-';
 
 
+    static String E1 = "Bambara";
+    static String E2 = "Fulfulde";
+    static String E3 = "Songhoi";
+    static String E4 = "Tamacheq";
+    static String E5 = "Bomu";
+    static String E6 = "Mamara";
+    static String E7 = "Shennara";
+    static String E8 = "Soninke";
+    static String E9 = "Bozo";
+    static String E10 = "Dogon";
+    static String E11 = "Malinke";
+    static String E12 = "Khasonke";
+    static String[] ethnie = new String[] { E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12 };
+
+    public static final String[] getETHNIE() {
+        return ethnie;
+    }
+
+
+    static String S1 = "Marié";
+    static String S2 = "Vit avec parent(s)";
+    static String S3 = "Concubinage";
+    static String S4 = "Vit seul(e)";
+    static String S5 = "Autre";
+    static String STATUT = "statut";
+    static String[] statut = new String[] { S1, S2, S3, S4, S5 };
+
+    public static final String[] getStatut() {
+        return statut;
+    }
+
+
+    static String Sc1 = "Primaire 1";
+    static String Sc2 = "Primaire 2";
+    static String Sc3 = "Primaire 3";
+    static String Sc4 = "Primaire 4";
+    static String Sc5 = "Primaire 5";
+    static String Sc6 ="Primaire 6";
+    static String Sc7 ="Secondaire 7";
+    static String Sc8 = "Secondaire 8";
+    static String Sc9 = "Secondaire 9";
+    static String Sc10 = "Supérieure";
+    static String Sc11 = "Aucun";
+
+    static String[] scolarisation = new String[] { Sc1, Sc2, Sc3, Sc4, Sc5,Sc6,Sc7,Sc8,Sc9,Sc10,Sc11 };
+
+    public static final String[] getScolarisation(){ return scolarisation; }
+
+
+
+    static String PF1 = "Agriculteur";
+    static String PF2 = "Eleveur";
+    static String PF3 = "Pêcheur";
+    static String PF4 = "Salarié ou fonctionnaire";
+    static String PF5 = "Artisan ou commerçant";
+    static String PF6 = "Etudiant";
+    static String PF7 = "Travail à domicile";
+    static String PF8 = "Profession libérale";
+    static String PF9 = "Autre";
+    static String[] profession = new String[] { PF1, PF2, PF3, PF4, PF5,PF6,PF7,PF8,PF9 };
+
+
+    public static final String[] getProfession(){ return profession; }
 
 
 

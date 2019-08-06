@@ -72,5 +72,8 @@
     <string name="notif_sms_failed">Échec de l\'envoi du rapport par SMS. Veuillez réessayer dans quelques minutes.</string>
     <string name="version_button_default_label">Vérifier mises à jour</string>
     <string name="version_button_label">Version %1$s (vérifier mises à jour)</string>
+    <string name="stock_label">Stock</string>
+    <string name="title_activity_stock">StockActivity</string>
+    <string name="title_activity_suivi">SuiviActivity</string>
 
 </resources>

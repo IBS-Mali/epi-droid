@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
 
         <TextView
             android:text="@string/app_name_long"
@@ -28,14 +30,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_label"
-            android:id="@+id/registerBtn"
-            android:layout_margin="10dp" />
+            android:id="@+id/registerBtn" />
         <Button
             android:text="@string/suivi_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/suiviBtn"
-            android:layout_margin="10dp" />
+            android:id="@+id/suiviBtn"/>
+        <Button
+            android:text="@string/stock_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stockBtn"/>
 
     </LinearLayout>
 
