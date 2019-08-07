@@ -23,10 +23,6 @@ public class RegisterActivity extends CheckedFormActivity {
 
     private Button saveSubmitButton;
     private Button saveButton;
-    private Spinner ethSpinner;
-    private Spinner statutSpinner;
-    private Spinner scolSpinner;
-    private Spinner profSpinner;
     private Spinner villageSpinner;
     private EditText PoidsField;
     private DatePicker registerDateField;
@@ -61,6 +57,8 @@ public class RegisterActivity extends CheckedFormActivity {
     private String sexePatient;
     private Boolean repondantIsPatient;
     private Boolean perteConnaissance;
+    private Spinner nbPerteConnaissanceSpinner;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -164,27 +162,33 @@ public class RegisterActivity extends CheckedFormActivity {
                 }
             }
         });
-        ethSpinner = findViewById(R.id.ethSpinner);
+        ethnieSpinner = findViewById(R.id.ethSpinner);
         ArrayAdapter<String> ethAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item, Constants.getETHNIE());
-        ethSpinner.setAdapter(ethAdapter);
+        ethnieSpinner.setAdapter(ethAdapter);
 
 
-        statutSpinner  = findViewById(R.id.statutSpinner);
+        etatCivilPatientSpinner  = findViewById(R.id.statutSpinner);
         ArrayAdapter<String> sAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item, Constants.getStatut());
-        statutSpinner.setAdapter(sAdapter);
+        etatCivilPatientSpinner.setAdapter(sAdapter);
 
-        scolSpinner = findViewById(R.id.scolSpinner);
+        niveauScolaireSpinner = findViewById(R.id.scolSpinner);
         ArrayAdapter<String> sAAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item,Constants.getScolarisation());
-        scolSpinner.setAdapter(sAAdapter);
+        niveauScolaireSpinner.setAdapter(sAAdapter);
 
 
-        profSpinner  = findViewById(R.id.profSpinner);
+        professionPrincipaleSpinner  = findViewById(R.id.profSpinner);
         ArrayAdapter<String> sPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item,Constants.getProfession());
-        profSpinner.setAdapter(sPAdapter);
+        professionPrincipaleSpinner.setAdapter(sPAdapter);
+
+
+        nbPerteConnaissanceSpinner  = findViewById(R.id.santSpinner);
+        ArrayAdapter<String> saPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item,Constants.getSANTE());
+        nbPerteConnaissanceSpinner.setAdapter(saPAdapter);
     }
 
 
