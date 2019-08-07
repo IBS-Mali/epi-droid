@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".EPIHome" >
+    tools:context=".EPIHome"
+    android:background="#274EB0">
 
 
     <LinearLayout
@@ -14,7 +15,7 @@
         android:id="@+id/scrollView"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        >
+        android:background="#03A9F4">
 
         <TextView
             android:text="@string/app_name_long"
@@ -36,11 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/suiviBtn"/>
+
         <Button
-            android:text="@string/stock_label"
+            android:id="@+id/stockBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/stockBtn"/>
+            android:text="@string/stock_label" />
 
     </LinearLayout>
 

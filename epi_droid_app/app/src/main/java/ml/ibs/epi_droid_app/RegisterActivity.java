@@ -21,6 +21,7 @@ public class RegisterActivity extends CheckedFormActivity {
     private Spinner statutSpinner;
     private Spinner scolSpinner;
     private Spinner profSpinner;
+    private Spinner santSpinner;
 
 
     @Override
@@ -91,6 +92,12 @@ public class RegisterActivity extends CheckedFormActivity {
         ArrayAdapter<String> sPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item,Constants.getProfession());
         profSpinner.setAdapter(sPAdapter);
+
+
+        santSpinner  = findViewById(R.id.santSpinner);
+        ArrayAdapter<String> saPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item,Constants.getSANTE());
+        santSpinner.setAdapter(saPAdapter);
     }
 
 
