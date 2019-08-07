@@ -110,14 +110,14 @@ public class Constants {
 
 
 
-    static String ST1 = "1foix";
-    static String ST2 = "2fois";
-    static String ST3 = "PLUS-FOIS ";
+    static String ST1 = "1 foix";
+    static String ST2 = "2 fois";
+    static String ST3 = "Plus-fois";
     static String ST4 = "Jamais";
-    static String[] SANTE = new String[] { ST1, ST2, ST3, ST4 };
+    static String[] nbPerteConnaissance = new String[] { ST1, ST2, ST3, ST4 };
 
 
-    public static final String[] getSANTE(){ return SANTE; }
+    public static final String[] getSANTE(){ return nbPerteConnaissance; }
 
 
 
