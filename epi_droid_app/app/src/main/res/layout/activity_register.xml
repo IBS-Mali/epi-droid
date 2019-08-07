@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,18 +23,9 @@
                 tools:ignore="MissingConstraints" />
             <TextView
                 android:id="@+id/labelVillage"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:textColor="#fff"
-                android:background="#0022E2"
-                android:text="Info. Patient"/>
-
-            <RadioGroup
-                android:id="@+id/radioRepondantG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Village"
-                tools:ignore="MissingConstraints" />
+                android:text="Village"/>
             <Spinner
                 android:datePickerMode="spinner"
                 android:layout_width="match_parent"
@@ -47,8 +39,7 @@
             <DatePicker
                 android:calendarViewShown="false"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </DatePicker>
+                android:layout_height="match_parent"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,11 +55,9 @@
                     android:text="Info. Patient"/>
 
                 <RadioGroup
-                    android:id="@+id/radio_group"
+                    android:id="@+id/radioRepondantG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
                     <TextView
                         android:id="@+id/textView4"
@@ -76,39 +65,32 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|center_vertical"
                         android:text="Le répondant est-il le patient lui-même ?" />
-                    <RadioButton
-                        android:id="@+id/button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OUI" />
 
                     <RadioButton
-                        android:id="@+id/button2"
+                        android:id="@+id/repondantOUI"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NON" />
+                        android:hint="Nom"
+                        android:text="" />
+                    <RadioButton
+                        android:id="@+id/repondantNon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Prénom"
+                        android:text="" />
                 </RadioGroup>
                 <EditText
                     android:id="@+id/nomPatient"
                     android:layout_width="match_parent"
-                    android:gravity="center|center_vertical"
-                    android:text="Le répondant est-il le patient lui-même ?" />
-                <RadioButton
-                    android:id="@+id/repondantOUI"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nom"
                     android:text="" />
                 <EditText
                     android:id="@+id/prenomPatient"
                     android:layout_width="match_parent"
-                <RadioButton
-                    android:id="@+id/repondantNon"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Prénom"
                     android:text="" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,226 +101,206 @@
                     android:id="@+id/dDN"
                     android:calendarViewShown="false"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></DatePicker>
-
+                    android:layout_height="match_parent"/>
                 <RadioGroup
-                    android:id="@+id/sexeRadio"
+                    android:id="@+id/sexeRadioG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:text="Sexe" />
-                    <RadioButton
-                        android:id="@+id/masculin"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:text="Masculin" />
+                        android:text="Sexe"/>
+                <RadioButton
+                    android:id="@+id/masculin"
+                    android:layout_width="141dp"
+                    android:layout_height="wrap_content"
+                    android:text="Masculin" />
 
-                    <RadioButton
-                        android:id="@+id/feminin"
-                        android:layout_width="153dp"
-                        android:layout_height="wrap_content"
-                        android:text="Feminin" />
-                </RadioGroup>
-
-                <Spinner
-                    android:id="@+id/ethSpinner"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/feminin"
+                    android:layout_width="153dp"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dialog"></Spinner>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Etat-civil du patient enquêté:"/>
-
-                <Spinner
-                    android:id="@+id/statutSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></Spinner>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Niveau Scolaire :"/>
-
-                <Spinner
-                    android:id="@+id/scolSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></Spinner>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Activité ou profession principale :"/>
-            <RadioGroup
-                android:id="@+id/sexeRadioG"
+                    android:text="Feminin" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ethnie du patient"/>
+            <Spinner
+                android:id="@+id/ethSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
-                <Spinner
-                    android:id="@+id/profSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></Spinner>
-                <TextView
+                android:spinnerMode="dialog"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Etat-civil du patient enquêté:"/>
+            <Spinner
+                android:id="@+id/statutSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niveau Scolaire :"/>
+            <Spinner
+                android:id="@+id/scolSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activité ou profession principale :"/>
+            <Spinner
+                android:id="@+id/profSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Coordonnees GPS"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textColor="#fff"
-                    android:background="#CC1E11"
-                    android:text="Question pour identification de cas suspect d’épilepsie?"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Perte(s) de connaissance et/ou perte d'urine et/ou émission de bave?" />
-
-                <Spinner
-                    android:id="@+id/santSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></Spinner>
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Absence(s) ou perte(s) de contact avec l'entourage de début brutal et de durée brève?"/>
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="OUI"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NON"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NE SAIT PAS"/>
-
-                </RadioGroup>
-
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Secousses ou mouvements anormaux incontrolables d'un ou des membres (avec ou sans convulsion de début soudain et d'une durée de quelques minutes?"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OUI"/>
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="NON"/>
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="NE SAIT PAS"/>
-                </RadioGroup>
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Apparition brutale et de durée brève de sensations corporelles étranges d'hallucinations ou d'illusions visuelles auditives ou olfactives?"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OUI"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NON"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NE SAIT PAS"/>
-                </RadioGroup>
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A-t-on déjà dit à la personne qu’elle était épileptique ou qu’il avait déjà fait au moins 2 crises d’épilepsie ?"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OUI"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NON"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NE SAIT PAS"/>
-
-                </RadioGroup>
-
-            </LinearLayout>
-            <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sujet épileptique"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OUI"/>
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="NON"/>
-                </RadioGroup>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Si oui (épileptique):"/>
-            <LinearLayout
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:background="#CC1E11"
+                android:text="Question pour identification de cas suspect d’épilepsie?"
+                android:gravity="center"/>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal"/>
-                <EditText
-                    android:layout_width="match_parent"
+                android:text=" Perte(s) de connaissance et/ou perte d'urine et/ou émission de bave?" />
+            <Spinner
+                android:id="@+id/santSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Age de début de l’épilepsie"/>
-                <EditText
+                    android:text="Absence(s) ou perte(s) de contact avec l'entourage de début brutal et de durée brève?"/>
+                <RadioButton
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Année de début de l’épilepsie :"/>
+                    android:layout_height="wrap_content"
+                    android:text="OUI"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NE SAIT PAS"/>
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Secousses ou mouvements anormaux incontrolables d'un ou des membres (avec ou sans convulsion de début soudain et d'une durée de quelques minutes?"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NON"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NE SAIT PAS"/>
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apparition brutale et de durée brève de sensations corporelles étranges d'hallucinations ou d'illusions visuelles auditives ou olfactives?"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NE SAIT PAS"/>
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A-t-on déjà dit à la personne qu’elle était épileptique ou qu’il avait déjà fait au moins 2 crises d’épilepsie ?"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NE SAIT PAS"/>
+            </RadioGroup>
+        </LinearLayout>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sujet épileptique"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUI"/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NON"/>
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Si oui (épileptique):"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Age de début de l’épilepsie"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Année de début de l’épilepsie :"/>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -366,6 +328,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Type d’épilepsie"/>
+        <!-- Crises généralisées -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -375,6 +338,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"/>
+        <!-- Crises partielles -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -491,42 +455,42 @@
                 android:layout_height="wrap_content"
                 android:text="NON"/>
         </RadioGroup>
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="parents "/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Grand-parents"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="frères"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="sœurs"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" enfants"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Oncle"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="tantes"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" cousins"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" cousines"/>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="parents "/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grand-parents"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="frères"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sœurs"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" enfants"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oncle"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tantes"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" cousins"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" cousines"/>
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -544,30 +508,30 @@
                 android:text="NON"/>
         </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=" Si oui, préciser le ou lesquels ?"/>
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Neuropaludisme "/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Méningite"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Encéphalite"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Accouchement dystocique"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AVC"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=" Si oui, préciser le ou lesquels ?"/>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Neuropaludisme "/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Méningite"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encéphalite"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accouchement dystocique"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVC"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
