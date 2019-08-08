@@ -58,6 +58,8 @@ public class RegisterActivity extends CheckedFormActivity {
     private Boolean repondantIsPatient;
     private Boolean perteConnaissance;
     private Spinner nbPerteConnaissanceSpinner;
+    private Spinner crisesGeneraliseeField;
+    private Spinner crisesPartiellesField;
 
 
     @Override
@@ -95,7 +97,8 @@ public class RegisterActivity extends CheckedFormActivity {
 //        sujetEpileptiqueField = findViewById(R.id.sujetEpileptique);
 //        ageDebutEpilepsieField = findViewById(R.id.ageDebutEpilepsie);
 //        crise2DernieresAnneesField = findViewById(R.id.crise2DernieresAnnees);
-//        typeEpilepsieField = findViewById(R.id.typeEpilepsie);
+//        crisesGeneraliseeField = findViewById(R.id.crisesGeneralisee);
+//        crisesPartiellesField = findViewById(R.id.crisesPartielles);
 //        nbCrisesEpilepsieField = findViewById(R.id.nbCrisesEpilepsie);
 //        priseMedicamentsModerneField = findViewById(R.id.priseMedicamentsModerne);
 //        priseAntiepileptiquesModernesField = findViewById(R.id.priseAntiepileptiquesModernes);
@@ -200,7 +203,7 @@ public class RegisterActivity extends CheckedFormActivity {
         report.nom = Utils.stringFromField(nomField);
         report.prenom = Utils.stringFromField(prenomField);
         report.village = Utils.stringFromSpinner(villageSpinner);
-        report.Poids = Utils.floatFromField(PoidsField);
+        report.poids = Utils.floatFromField(PoidsField);
         report.registerDate = Utils.getDateFromDatePicker(registerDateField);
         report.nom = Utils.stringFromField(nomField);
         report.prenom = Utils.stringFromField(prenomField);
@@ -222,7 +225,8 @@ public class RegisterActivity extends CheckedFormActivity {
 //        report.sujetEpileptique = Utils.stringFromField(sujetEpileptiqueField);
 //        report.ageDebutEpilepsie = Utils.stringFromField(ageDebutEpilepsieField);
 //        report.crise2DernieresAnnees = Utils.stringFromField(crise2DernieresAnneesField);
-//        report.typeEpilepsie = Utils.stringFromField(typeEpilepsieField);
+          report.crisesGeneralisee = Utils.stringFromSpinner(crisesGeneraliseeField);
+          report.crisesPartielles = Utils.stringFromSpinner(crisesPartiellesField);
 //        report.nbCrisesEpilepsie = Utils.stringFromField(nbCrisesEpilepsieField);
 //        report.priseMedicamentsModerne = Utils.stringFromField(priseMedicamentsModerneField);
 //        report.priseAntiepileptiquesModernes = Utils.stringFromField(priseAntiepileptiquesModernesField);
@@ -240,7 +244,6 @@ public class RegisterActivity extends CheckedFormActivity {
         RegisterData report = RegisterData.get();
         setTextOnField(nomField, report.nom);
         setTextOnField(prenomField, report.prenom);
-
     }
 
     protected boolean setupInvalidInputChecks() {

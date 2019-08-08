@@ -12,7 +12,7 @@ public class RegisterData extends BaseData {
     private static final String TAG = Constants.getLogTag("RegisterData");
 
     String village = "";
-    Float Poids = Float.valueOf(-1);
+    Float poids = Float.valueOf(-1);
     Date registerDate = null;
     String nom = "";
     String prenom = "";
@@ -34,7 +34,8 @@ public class RegisterData extends BaseData {
     Boolean sujetEpileptique = false;
     Date ageDebutEpilepsie = null;
     Boolean crise2DernieresAnnees = false;
-    String typeEpilepsie = "";
+    String crisesGeneralisee = "";
+    String crisesPartielles = "";
     String nbCrisesEpilepsie = "";
     String priseMedicamentsModerne = "";
     String priseAntiepileptiquesModernes = "";
@@ -69,7 +70,7 @@ public class RegisterData extends BaseData {
 
     public RegisterData(
                     String village,
-                    Float Poids,
+                    Float poids,
                     Date registerDate,
                     String nom,
                     String prenom,
@@ -91,7 +92,8 @@ public class RegisterData extends BaseData {
                     Boolean sujetEpileptique,
                     Date ageDebutEpilepsie,
                     Boolean crise2DernieresAnnees,
-                    String typeEpilepsie,
+                    String crisesGeneralisee,
+                    String crisesPartielles,
                     String nbCrisesEpilepsie,
                     String priseMedicamentsModerne,
                     String priseAntiepileptiquesModernes,
@@ -101,7 +103,7 @@ public class RegisterData extends BaseData {
                     String quelsAntecedentsNeurologiquesFamiliaux) {
 
         this.village = village;
-        this.Poids = Poids;
+        this.poids = poids;
         this.registerDate = registerDate;
         this.nom = nom;
         this.prenom = prenom;
@@ -123,7 +125,8 @@ public class RegisterData extends BaseData {
         this.sujetEpileptique = sujetEpileptique;
         this.ageDebutEpilepsie = ageDebutEpilepsie;
         this.crise2DernieresAnnees = crise2DernieresAnnees;
-        this.typeEpilepsie = typeEpilepsie;
+        this.crisesPartielles = crisesGeneralisee;
+        this.crisesPartielles = crisesPartielles;
         this.nbCrisesEpilepsie = nbCrisesEpilepsie;
         this.priseMedicamentsModerne = priseMedicamentsModerne;
         this.priseAntiepileptiquesModernes = priseAntiepileptiquesModernes;
@@ -137,7 +140,7 @@ public class RegisterData extends BaseData {
     public String buildSMSText() {
         return "reg" + Constants.sepaData +
                 this.village + Constants.sepaData +
-                this.Poids + Constants.sepaData +
+                this.poids + Constants.sepaData +
                 this.registerDate + Constants.sepaData +
                 this.nom + Constants.sepaData +
                 this.prenom + Constants.sepaData +
@@ -159,7 +162,8 @@ public class RegisterData extends BaseData {
                 this.sujetEpileptique + Constants.sepaData +
                 this.ageDebutEpilepsie + Constants.sepaData +
                 this.crise2DernieresAnnees + Constants.sepaData +
-                this.typeEpilepsie + Constants.sepaData +
+                this.crisesGeneralisee + Constants.sepaData +
+                this.crisesPartielles + Constants.sepaData +
                 this.nbCrisesEpilepsie + Constants.sepaData +
                 this.priseMedicamentsModerne + Constants.sepaData +
                 this.priseAntiepileptiquesModernes + Constants.sepaData +
