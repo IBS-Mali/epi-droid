@@ -121,6 +121,26 @@ public class Constants {
 
 
 
+    static String CG1 = "toni-cloniques";
+    static String CG2 = "toniques";
+    static String CG3 = "cloniques";
+    static String CG4 = "absences myocloniques";
+    static String[] crisesGeneralisee = new String[] { CG1, CG2, CG3, CG4 };
+
+
+    public static final String[] getCRISEGENERAL(){ return crisesGeneralisee; }
+
+
+    static String CP1 = " motrices";
+    static String CP2 = "sensorielles";
+    static String CP3 = "complexes ";
+    static String CP4 = "secondairement généralisées";
+    static String[] crisesPartielle = new String[] { CP1, CP2, CP3, CP4 };
+
+
+    public static final String[] getCRISEPARTIELLE(){ return crisesPartielle; }
+
+
     public static final String getLogTag(String activity) {
     	return String.format("EPI-Log-%s", activity);
     }
