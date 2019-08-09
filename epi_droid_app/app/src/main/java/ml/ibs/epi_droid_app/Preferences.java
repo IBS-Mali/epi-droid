@@ -11,11 +11,20 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.orm.SugarContext;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class Preferences extends PreferenceActivity {
@@ -24,6 +33,7 @@ public class Preferences extends PreferenceActivity {
     private File currentDB;
     private String packageName;
     private String databaseName;
+    private Spinner dristrictSpinner;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -40,6 +50,9 @@ public class Preferences extends PreferenceActivity {
         editor.putString("passwork", "");
         editor.apply();
         addPreferencesFromResource(R.xml.epi_preferences);
+
+
+        ListPreference entities = (ListPreference) findPreference("entities");
 
         final Preference restBtt = (Preference)findPreference("restDB");
         restBtt.setSummary(String.format(getString(R.string.summary_reset_db), 3));
@@ -63,6 +76,7 @@ public class Preferences extends PreferenceActivity {
         });
 
     }
+
 
     private void restDatabase(String databaseName) {
 

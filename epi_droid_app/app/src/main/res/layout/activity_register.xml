@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Village"/>
             <Spinner
-                android:datePickerMode="spinner"
+                android:id="@+id/villageSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <TextView
@@ -90,6 +90,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Prénom"
+                    android:text="" />
+
+                <EditText
+                    android:id="@+id/poidsField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Poids"
+                    android:inputType="numberDecimal"
                     android:text="" />
                 <TextView
                     android:layout_width="match_parent"
