@@ -62,9 +62,9 @@ public class RegisterActivity extends CheckedFormActivity {
     private Boolean repondantIsPatient;
     private Boolean perteConnaissance;
     private Spinner nbPerteConnaissanceSpinner;
-    private Spinner crisesGeneraliseeField;
-    private Spinner crisesPartiellesField;
     private String villige_code;
+    private Spinner crisesGeneraliseeSpinner;
+    private Spinner crisesPartiellesSpinner;
 
 
     @Override
@@ -101,8 +101,8 @@ public class RegisterActivity extends CheckedFormActivity {
 //        sujetEpileptiqueField = findViewById(R.id.sujetEpileptique);
 //        ageDebutEpilepsieField = findViewById(R.id.ageDebutEpilepsie);
 //        crise2DernieresAnneesField = findViewById(R.id.crise2DernieresAnnees);
-//        crisesGeneraliseeField = findViewById(R.id.crisesGeneralisee);
-//        crisesPartiellesField = findViewById(R.id.crisesPartielles);
+//        crisesGeneraliseeSpinner = findViewById(R.id.crisesGeneralisee);
+//        crisesPartiellesSpinner = findViewById(R.id.crisesPartielles);
 //        nbCrisesEpilepsieField = findViewById(R.id.nbCrisesEpilepsie);
 //        priseMedicamentsModerneField = findViewById(R.id.priseMedicamentsModerne);
 //        priseAntiepileptiquesModernesField = findViewById(R.id.priseAntiepileptiquesModernes);
@@ -232,6 +232,19 @@ public class RegisterActivity extends CheckedFormActivity {
         ArrayAdapter<String> saPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item,Constants.getSANTE());
         nbPerteConnaissanceSpinner.setAdapter(saPAdapter);
+
+
+        crisesGeneraliseeSpinner = findViewById(R.id.crisesGeneralisee);
+        ArrayAdapter<String> CGPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item,Constants.getCRISEGENERAL());
+        crisesGeneraliseeSpinner.setAdapter(CGPAdapter);
+
+
+        crisesPartiellesSpinner = findViewById(R.id.crisesPartielles);
+        ArrayAdapter<String> CPPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item,Constants.getCRISEPARTIELLE());
+       crisesPartiellesSpinner.setAdapter(CPPAdapter);
+
     }
 
 
