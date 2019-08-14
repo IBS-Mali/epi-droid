@@ -4,101 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img"
-    tools:context=".StockActivity">
+    tools:context=".StockActivity"
+    android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <LinearLayout
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="GESTION DE STOCK"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+        <TextView
+            android:textSize="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="phénobarbital" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="QUANTE RECUE" />
+
+        <LinearLayout
+            android:id="@+id/sw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/geststock"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#551919B3"
-                android:text="Gestion de Stock"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                tools:ignore="MissingConstraints" />
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="139dp"
-                android:orientation="horizontal">
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Designation" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Quantité reçue" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="62dp"
-                        android:layout_weight="1"
-                        android:text="Quantité Utiliser" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="62dp"
-                        android:layout_weight="1"
-                        android:text="Quantité perdue" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-             <LinearLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal">
-                 <Button
-                     android:id="@+id/saveButton"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_weight=".50"
-                     android:text="Sauvegarder" />
-                 <Button
-                    android:id="@+id/saveSubmitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".50"
-                    android:text="Envoyer" />
-             </LinearLayout>
-    </LinearLayout>
+                android:text=" QUANTITE UTILISEE" />
 
-</ScrollView>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:text="QUANTITE PERDUE" />
+
+        </LinearLayout>
+
+        <TextView
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="carbamazepine" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="QUANTE RECUE" />
+
+        <LinearLayout
+            android:id="@+id/w"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" QUANTITE UTILISEE" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:text="QUANTITE PERDUE" />
+        </LinearLayout>
+
+        <TextView
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="sodium valproate" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="QUANTE RECUE" />
+
+        <LinearLayout
+            android:id="@+id/ew"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" QUANTITE UTILISEE" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:text="QUANTITE PERDUE" />
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
