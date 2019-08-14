@@ -9,16 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
             android:id="@+id/formulairesuivi"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="#551919B3"
-            android:layout_height="61dp"
             android:text="Formulaire de Suivi (mensuel)"
             android:textAlignment="center"
             android:textSize="20dp"
@@ -30,19 +31,25 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:inputType="date"
-            android:text="Id patient" />
-        <EditText
-            android:id="@+id/dateVisite"
+            android:hint="Id patient" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
             android:inputType="date"
             android:text="Date visite" />
+
+        <DatePicker
+            android:id="@+id/dateVisite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:calendarViewShown="false" />
+
         <TextView
             android:id="@+id/observation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Observation" />
+            android:hint="Observance" />
 
         <EditText
             android:id="@+id/nombrePlaquette"
@@ -50,7 +57,40 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Nombre plaquette"/>
+            android:hint="Nombre plaquette vide"/>
+
+        <RadioGroup
+            android:id="@+id/effeRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/effeteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_vertical"
+                android:text="Effets indésirables ?" />
+            <RadioButton
+                android:id="@+id/effetnOui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUI" />
+            <RadioButton
+                android:id="@+id/effetNon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NON" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Si oui appelé/SMS"/>
+        <EditText
+            android:hint="Les quelles ?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <RadioGroup
             android:id="@+id/criseRadio"
@@ -78,21 +118,21 @@
         </RadioGroup>
         <EditText
             android:id="@+id/frequence"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number"
-            android:text="Fréquence crise"/>
+            android:hint="Fréquence mensuelle des crises"/>
 
         <EditText
             android:id="@+id/intensite"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number"
-            android:text="Intensité" />
+            android:hint="Intensité mensuelle" />
 
         <LinearLayout
             android:layout_width="match_parent"

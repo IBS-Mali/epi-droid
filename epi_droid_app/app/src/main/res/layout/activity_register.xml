@@ -43,7 +43,15 @@
                 android:text="Date d'enregistrement"
                 tools:ignore="MissingConstraints" />
 
+            <TextView
+                style="@android:style/Widget.Holo.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATE"
+                android:id="@+id/editDate"
+                android:layout_margin="10dp" />
             <DatePicker
+                android:id="@+id/registerDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:calendarViewShown="false" />
@@ -79,14 +87,14 @@
                         android:id="@+id/repondantOUI"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Nom"
+                        android:hint="OUI"
                         android:text="" />
 
                     <RadioButton
                         android:id="@+id/repondantNon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Prénom"
+                        android:hint="Non"
                         android:text="" />
                 </RadioGroup>
 
@@ -355,7 +363,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="number"
-                android:text="Année de début de l’épilepsie :" />
+                android:hint="Année de début de l’épilepsie :" />
         </LinearLayout>
 
         <TextView
@@ -420,19 +428,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="combien de fois par jour " />
+            android:hint="combien de fois par jour " />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="combien de fois par mois" />
+            android:hint="combien de fois par mois" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="combien de fois par an " />
+            android:hint="combien de fois par an " />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -461,7 +469,12 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NON" />
+                android:text="Non" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jamais" />
         </RadioGroup>
 
         <RadioGroup

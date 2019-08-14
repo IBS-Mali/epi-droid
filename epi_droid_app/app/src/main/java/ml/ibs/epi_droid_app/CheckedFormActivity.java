@@ -19,13 +19,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 
+import java.util.List;
 import java.util.Map;
 
 public class CheckedFormActivity extends Activity implements SMSUpdater {
@@ -321,6 +327,28 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
         }
         //Log.d(TAG, value_str);
         editText.setText(value_str);
+    }
+
+    public static void setDatetoDatePicker(DatePicker datePicker, Date date){
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            datePicker.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        } catch (Exception e){}
+    }
+
+     public static void checkOnRadio(RadioGroup radioGroup, int id){
+        Log.d(TAG, String.valueOf(id));
+        try {
+            radioGroup.check(id);
+           } catch (Exception e) {
+
+        }
+    }
+
+    public static int getIntOnRadioGroup(RadioGroup radioGroup){
+        return radioGroup.indexOfChild(
+                radioGroup.findViewById(radioGroup.getCheckedRadioButtonId()));
     }
 
     /* SMS Submission Helper */
@@ -627,6 +655,9 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
 //        return mustMatchStockCoherence(initialField, receivedField, usedField, lostField, false);
 //    }
 
+    protected void setWithIndexOnSpinner(final Spinner spinner, List spinnerArrayCode, String value) {
+        spinner.setSelection(spinnerArrayCode.indexOf(value));
+    }
 
     protected void setIntegerOnField(EditText edittext, Object obj)
     {

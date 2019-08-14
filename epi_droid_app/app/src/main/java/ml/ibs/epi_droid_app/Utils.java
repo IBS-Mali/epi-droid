@@ -26,6 +26,7 @@ import java.nio.channels.FileChannel;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -107,8 +108,79 @@ public class Utils extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
-
         return calendar.getTime();
+    }
+
+
+    public ArrayList buildArray (String key) {
+
+        ArrayList spinnerArray = new ArrayList();
+        ArrayList spinnerArrayCode = new ArrayList();
+        ArrayList arrayList = new ArrayList();
+        try {
+            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+            JSONArray entities = jsonObject.getJSONArray(key);
+
+            for(int i=0; i<entities.length(); i++) {
+                JSONObject jb =(JSONObject) entities.get(i);
+                String name = jb.getString("name");
+                String code = jb.getString("code");
+                    spinnerArray.add(new StringWithTag(name, code));
+                    spinnerArrayCode.add(code);
+
+            }
+            arrayList.add(spinnerArray);
+            arrayList.add(spinnerArrayCode);
+        } catch (JSONException e) {
+            Log.d(TAG, e.toString());
+        }
+        return arrayList;
+    }
+
+
+
+    private static class StringWithTag {
+        public String string;
+        public Object tag;
+
+        public StringWithTag(String string, Object tag) {
+            this.string = string;
+            this.tag = tag;
+        }
+
+        public String getWithTag(Object tag) {
+            return this.string;
+
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("data.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public static String getStringSexe(int sexe) {
+        if (sexe==1){
+            return "m";
+        } else {
+            return "f";
+        }
     }
 
 

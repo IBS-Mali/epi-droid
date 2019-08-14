@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -32,9 +34,9 @@ public class RegisterActivity extends CheckedFormActivity {
     private DatePicker registerDateField;
     private EditText nomField;
     private EditText prenomField;
-    private EditText repondantPatientField;
+    private RadioGroup repondantPatientRGroup;
     private DatePicker ddnField;
-    private EditText SexeField;
+    private RadioGroup sexeRGroup;
     private Spinner ethnieSpinner;
     private Spinner etatCivilPatientSpinner;
     private Spinner niveauScolaireSpinner;
@@ -59,12 +61,15 @@ public class RegisterActivity extends CheckedFormActivity {
     private EditText autresAntecedentsNeurologiquesFamiliauxField;
     private EditText quelsAntecedentsNeurologiquesFamiliauxField;
     private String sexePatient;
-    private Boolean repondantIsPatient;
+//    private int repondantIsPatient;
     private Boolean perteConnaissance;
     private Spinner nbPerteConnaissanceSpinner;
     private String villige_code;
     private Spinner crisesGeneraliseeSpinner;
     private Spinner crisesPartiellesSpinner;
+    private TextView dateField;
+    private List spinnerArray;
+    private List spinnerArrayCode;
 
 
     @Override
@@ -82,10 +87,11 @@ public class RegisterActivity extends CheckedFormActivity {
         prenomField = findViewById(R.id.prenomPatient);
         saveButton = findViewById(R.id.saveButton);
         poidsField = findViewById(R.id.poidsField);
-//        registerDateField = findViewById(R.id.registerDate);
-//        repondantPatientField = findViewById(R.id.repondantPatient);
-//        ddnField = findViewById(R.id.ddn);
-//        SexeField = findViewById(R.id.Sexe);
+        registerDateField = findViewById(R.id.registerDate);
+        dateField = findViewById(R.id.editDate);
+        repondantPatientRGroup = findViewById(R.id.radioRepondantG);
+        ddnField = findViewById(R.id.dDN);
+        sexeRGroup = findViewById(R.id.sexeRadioG);
 //        ethnieField = findViewById(R.id.ethnie);
 //        etatCivilPatientField = findViewById(R.id.etatCivilPatient);
 //        niveauScolaireField = findViewById(R.id.niveauScolaire);
@@ -116,16 +122,12 @@ public class RegisterActivity extends CheckedFormActivity {
         // setup invalid inputs checks
         setupInvalidInputChecks();
 
-        RegisterData report = RegisterData.get();
-        if (!report.isSend){
-            restoreReportData();
-        }
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-            // ensure data is OK
-            storeReportData();
+                // ensure data is OK
+                storeReportData();
             }
         });
 
@@ -142,39 +144,41 @@ public class RegisterActivity extends CheckedFormActivity {
                     Constants.SMS_KEYWORD, buildSMSText());
             }
         });
-        RadioGroup sexeRadioG = findViewById(R.id.sexeRadioG);
-        sexeRadioG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-            switch(checkedId){
-                case R.id.masculin:
-                    sexePatient  = "M";
-                    break;
-                case R.id.feminin:
-                    sexePatient  = "F";
-                    break;
-            }
-            Utils.toast(getBaseContext(), sexePatient);
-            }
-        });
-        RadioGroup repondantRadioG = findViewById(R.id.radioRepondantG);
-        repondantRadioG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-            switch(checkedId){
-                case R.id.repondantNon:
-                    repondantIsPatient = false;
-                    break;
-                case R.id.repondantOUI:
-                    repondantIsPatient  = true;
-                    break;
-            }
-            }
-        });
+//         sexeRGroup = findViewById(R.id.sexeRadioG);
+//        sexeRadioG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//            switch(checkedId){
+//                case R.id.masculin:
+//                    sexePatient  = "M";
+//                    break;
+//                case R.id.feminin:
+//                    sexePatient  = "F";
+//                    break;
+//            }
+//            Utils.toast(RegisterActivity.this, selectedID + " dkd");
+//            Utils.toast(getBaseContext(), sexePatient);
+//            }
+//        });
+//          repondantPatientRGroup = findViewById(R.id.radioRepondantG);
+//        repondantPatientRGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//            switch(checkedId){
+//                case R.id.repondantNon:
+//                    repondantIsPatient = 0;
+//                    break;
+//                case R.id.repondantOUI:
+//                    repondantIsPatient  = 1;
+//                    break;
+//            }
+//            }
+//        });
 
-        List spinnerArray = new ArrayList();
+        spinnerArray = new ArrayList();
+        spinnerArrayCode = new ArrayList();
         try {
             JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
             JSONArray entities = jsonObject.getJSONArray("entities");
-            
+
             for(int i=0; i<entities.length(); i++) {
                 JSONObject jb =(JSONObject) entities.get(i);
                 String name = jb.getString("name");
@@ -182,6 +186,7 @@ public class RegisterActivity extends CheckedFormActivity {
                 String type = jb.getString("type");
                 if (type.equals("vfq")){
                     spinnerArray.add(new StringWithTag(name, code));
+                    spinnerArrayCode.add(code);
                 }
             }
         } catch (JSONException e) {
@@ -197,17 +202,13 @@ public class RegisterActivity extends CheckedFormActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 StringWithTag swt = (StringWithTag) parent.getItemAtPosition(position);
-                String villige_code = (String) swt.tag;
-                Log.d(TAG, villige_code);
-
+                villige_code = (String) swt.tag;
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
+        Utils.toast(RegisterActivity.this, villageSpinner.toString());
         ethnieSpinner = findViewById(R.id.ethSpinner);
         ArrayAdapter<String> ethAdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item, Constants.getETHNIE());
@@ -245,25 +246,29 @@ public class RegisterActivity extends CheckedFormActivity {
                 android.R.layout.simple_spinner_item,Constants.getCRISEPARTIELLE());
        crisesPartiellesSpinner.setAdapter(CPPAdapter);
 
+        final RegisterData report = RegisterData.get();
+        if (!report.isSend){
+//            Log.d(TAG, String.valueOf(report.isSend));
+            restoreReportData();
+        }
     }
 
 
     protected void storeReportData() {
         Log.d(TAG, "storeData");
-        Utils.toast(this, Utils.stringFromField(nomField));
+
+        Utils.toast(RegisterActivity.this, String.valueOf(getIntOnRadioGroup(repondantPatientRGroup)));
         RegisterData report = RegisterData.get();
         report.updateMetaData();
         report.nom = Utils.stringFromField(nomField);
         report.prenom = Utils.stringFromField(prenomField);
         report.village = villige_code;
         report.poids = Utils.floatFromField(poidsField);
-        report.registerDate = Utils.getDateFromDatePicker(registerDateField);
-//        report.nom = Utils.stringFromField(nomField);
-//        report.prenom = Utils.stringFromField(prenomField);
-//        report.repondantPatient = repondantIsPatient;
-//        report.ddn = Utils.getDateFromDatePicker(ddnField);
-//        report.Sexe = sexePatient;
-//        report.ethnie = Utils.stringFromSpinner(ethnieSpinner);
+        report.register_date = Utils.getDateFromDatePicker(registerDateField);
+        report.repondant_patient = getIntOnRadioGroup(repondantPatientRGroup);
+        report.ddn = Utils.getDateFromDatePicker(ddnField);
+        report.sexe = getIntOnRadioGroup(sexeRGroup);
+        report.ethnie = Utils.stringFromSpinner(ethnieSpinner);
 //        report.etatCivilPatient = Utils.stringFromSpinner(etatCivilPatientSpinner);
 //        report.niveauScolaire = Utils.stringFromSpinner(niveauScolaireSpinner);
 //        report.professionPrincipale = Utils.stringFromSpinner(professionPrincipaleSpinner);
@@ -278,8 +283,8 @@ public class RegisterActivity extends CheckedFormActivity {
 //        report.sujetEpileptique = Utils.stringFromField(sujetEpileptiqueField);
 //        report.ageDebutEpilepsie = Utils.stringFromField(ageDebutEpilepsieField);
 //        report.crise2DernieresAnnees = Utils.stringFromField(crise2DernieresAnneesField);
-//          report.crisesGeneralisee = Utils.stringFromSpinner(crisesGeneraliseeField);
-//          report.crisesPartielles = Utils.stringFromSpinner(crisesPartiellesField);
+//        report.crisesGeneralisee = Utils.stringFromSpinner(crisesGeneraliseeField);
+//        report.crisesPartielles = Utils.stringFromSpinner(crisesPartiellesField);
 //        report.nbCrisesEpilepsie = Utils.stringFromField(nbCrisesEpilepsieField);
 //        report.priseMedicamentsModerne = Utils.stringFromField(priseMedicamentsModerneField);
 //        report.priseAntiepileptiquesModernes = Utils.stringFromField(priseAntiepileptiquesModernesField);
@@ -288,6 +293,8 @@ public class RegisterActivity extends CheckedFormActivity {
 //        report.autresAntecedentsNeurologiquesFamiliaux = Utils.stringFromField(autresAntecedentsNeurologiquesFamiliauxField);
 //        report.quelsAntecedentsNeurologiquesFamiliaux = Utils.stringFromField(quelsAntecedentsNeurologiquesFamiliauxField);
         report.safeSave();
+
+        Utils.toast(RegisterActivity.this, String.valueOf(Utils.stringFromSpinner(ethnieSpinner)));
         Log.d(TAG, "storeReportData -- end");
     }
 
@@ -295,8 +302,31 @@ public class RegisterActivity extends CheckedFormActivity {
         Log.d(TAG, "restoreData");
 
         RegisterData report = RegisterData.get();
+//      TODO restore spinner village
+        setWithIndexOnSpinner(villageSpinner, spinnerArrayCode, report.village);
+        setDatetoDatePicker(registerDateField, report.register_date);
         setTextOnField(nomField, report.nom);
         setTextOnField(prenomField, report.prenom);
+        setTextOnField(poidsField, report.poids);
+//        checkOnRadio(repondantPatientRGroup, report.repondant_patient);
+        if (report.repondant_patient==1) {
+            repondantPatientRGroup.check(R.id.repondantOUI);
+        } else {
+            repondantPatientRGroup.check(R.id.repondantNon);
+        }
+        setDatetoDatePicker(ddnField, report.ddn);
+//        checkOnRadio(sexeRGroup, report.sexe);
+        if (report.sexe == 1) {
+            sexeRGroup.check(R.id.masculin);
+        } else {
+            sexeRGroup.check(R.id.feminin);
+        }
+
+        if (!report.ethnie.equals("")) {
+            int pos = new ArrayList<String>(Arrays.asList(Constants.getETHNIE())).indexOf(report.ethnie);
+            Log.d(TAG, "ethnie " + pos);
+            ethnieSpinner.setSelection(pos);
+        }
     }
 
     protected boolean setupInvalidInputChecks() {
@@ -321,6 +351,11 @@ public class RegisterActivity extends CheckedFormActivity {
             this.tag = tag;
         }
 
+        public String getWithTag(Object tag) {
+           return this.string;
+
+        }
+
         @Override
         public String toString() {
             return string;
@@ -330,26 +365,16 @@ public class RegisterActivity extends CheckedFormActivity {
     public String loadJSONFromAsset() {
         String json = null;
         try {
-
             InputStream is = getAssets().open("data.json");
-
             int size = is.available();
-
             byte[] buffer = new byte[size];
-
             is.read(buffer);
-
             is.close();
-
             json = new String(buffer, "UTF-8");
-
-
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
         }
         return json;
-
     }
-
 }
