@@ -39,9 +39,33 @@
     <PreferenceCategory android:title="@string/locality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Preference android:title="@string/healfEntity"
-            android:key="entity"
-            android:summary="@string/summary_healf_center"/>
+        <ListPreference
+            android:title="Région"
+            android:summary="Région sanitaire"
+            android:key="entities"
+            android:defaultValue="#00FFFF"
+            android:entries="@array/regions_codes"
+            android:entryValues="@array/regions"
+            android:icon="@mipmap/ic_launcher"
+            android:dialogIcon="@mipmap/ic_launcher" />
+        <ListPreference
+            android:title="District Sanitaire"
+            android:summary="District Sanitaire"
+            android:key="healfDistrict"
+            android:defaultValue="#00FFFF"
+            android:entries="@array/districts_codes"
+            android:entryValues="@array/districts"
+            android:icon="@mipmap/ic_launcher"
+            android:dialogIcon="@mipmap/ic_launcher" />
+        <ListPreference
+            android:title="@string/healthEntity"
+            android:summary="@string/summary_health_center"
+            android:key="healfCenter"
+            android:defaultValue="#00FFFF"
+            android:entries="@array/health_center_codes"
+            android:entryValues="@array/health_center"
+            android:icon="@mipmap/ic_launcher"
+            android:dialogIcon="@mipmap/ic_launcher"  />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/advanced"
         android:layout_width="wrap_content"

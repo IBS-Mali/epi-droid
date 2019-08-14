@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="regions_codes">
+        <item>"Koulikoro"</item>
+    </string-array>
+    <string-array name="regions">
+        <item>"Koulikoro"</item>
+    </string-array>
+
+    <string-array name="districts_codes">
+        <item>"Kolokani"</item>
+    </string-array>
+    <string-array name="districts">
+        <item>"K0"</item>
+    </string-array>
+
+    <string-array name="health_center_codes">
+        <item>"Nonkon"</item>
+    </string-array>
+    <string-array name="health_center">
+        <item>"N0"</item>
+    </string-array>
+</resources>

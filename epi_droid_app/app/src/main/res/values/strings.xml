@@ -57,8 +57,8 @@
     <string name="pref_pass_word">Mot de passe</string>
     <string name="pref_pass_word_summary">Mot de passe du compte d\'utilisateur</string>
     <string name="locality">Localité</string>
-    <string name="healfEntity">Air de santé</string>
-    <string name="summary_healf_center">Air de santé</string>
+    <string name="healthEntity">Air de santé</string>
+    <string name="summary_health_center">Air de santé</string>
 
     <!-- Password Dialog -->
     <string name="username">Identifiant</string>

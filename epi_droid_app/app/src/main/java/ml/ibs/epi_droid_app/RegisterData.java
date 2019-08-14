@@ -50,11 +50,11 @@ public class RegisterData extends BaseData {
     public RegisterData() {}
 
 
-    public RegisterData(
-            String nom, String prenom){
-        this.nom = nom;
-        this.prenom = prenom;
-    }
+//    public RegisterData(
+//            String nom, String prenom){
+//        this.nom = nom;
+//        this.prenom = prenom;
+//    }
 
     public static RegisterData get() {
         RegisterData report = getUniqueRecord(RegisterData.class);
