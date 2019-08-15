@@ -111,31 +111,32 @@ public class Utils extends AppCompatActivity {
         return calendar.getTime();
     }
 
-
-    public ArrayList buildArray (String key) {
-
-        ArrayList spinnerArray = new ArrayList();
-        ArrayList spinnerArrayCode = new ArrayList();
-        ArrayList arrayList = new ArrayList();
-        try {
-            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
-            JSONArray entities = jsonObject.getJSONArray(key);
-
-            for(int i=0; i<entities.length(); i++) {
-                JSONObject jb =(JSONObject) entities.get(i);
-                String name = jb.getString("name");
-                String code = jb.getString("code");
-                    spinnerArray.add(new StringWithTag(name, code));
-                    spinnerArrayCode.add(code);
-
-            }
-            arrayList.add(spinnerArray);
-            arrayList.add(spinnerArrayCode);
-        } catch (JSONException e) {
-            Log.d(TAG, e.toString());
-        }
-        return arrayList;
-    }
+//
+//    public static ArrayList buildArray(String jkey) {
+//
+//        ArrayList spinnerArray = new ArrayList();
+//        ArrayList spinnerArrayCode = new ArrayList();
+//        ArrayList arrayList = new ArrayList();
+//        try {
+//            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+//            JSONArray arrayKey = jsonObject.getJSONArray(jkey);
+//
+////            for(int i=0; i<arrayKey.length(); i++) {
+////                JSONObject jb = (JSONObject) arrayKey.get(i);
+////                Log.i(TAG, jb.keys());
+////                String name = jb.getString("name");
+////                String code = jb.getString("code");
+////                    spinnerArray.add(new StringWithTag(name, code));
+////                    spinnerArrayCode.add(code);
+//
+////            }
+//            arrayList.add(spinnerArray);
+//            arrayList.add(spinnerArrayCode);
+//        } catch (JSONException e) {
+//            Log.d(TAG, e.toString());
+//        }
+//        return arrayList;
+//    }
 
 
 

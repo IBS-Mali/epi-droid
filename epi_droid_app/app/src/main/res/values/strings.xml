@@ -73,7 +73,8 @@
     <string name="version_button_default_label">Vérifier mises à jour</string>
     <string name="version_button_label">Version %1$s (vérifier mises à jour)</string>
     <string name="stock_label">Stock</string>
-    <string name="title_activity_stock">StockActivity</string>
-    <string name="title_activity_suivi">SuiviActivity</string>
+    <string name="title_activity_stock">Gestion de stock</string>
+    <string name="title_activity_suivi">Formulaire de Suivi (mensuel)</string>
+    <string name="title_activity_register">Formulaire d\'enregistrement</string>
 
 </resources>

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="#551919B3"
-            android:text="Formulaire de Suivi (mensuel)"
+            android:text="@string/title_activity_suivi"
             android:textAlignment="center"
             android:textSize="20dp"
             tools:ignore="MissingConstraints" />

@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SuiviActivity extends Activity {
+public class SuiviActivity extends CheckedFormActivity {
     private final static String TAG = Constants.getLogTag("SuiviActivity");
 
     private EditText idPatientField;
@@ -34,12 +34,13 @@ public class SuiviActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTitle(R.string.title_activity_suivi);
         setContentView(R.layout.activity_suivi);
-
-
-
-
+        setupSMSReceiver();
+        setupUI();
     }
+
 
     protected void setupUI() {
         Log.d(TAG, "setupUI SuiviActivity");

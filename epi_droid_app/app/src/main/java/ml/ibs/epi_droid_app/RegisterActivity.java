@@ -19,7 +19,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -75,7 +74,7 @@ public class RegisterActivity extends CheckedFormActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("RegisterActivity");
+        setTitle(R.string.title_activity_register);
         setContentView(R.layout.activity_register);
         setupSMSReceiver();
         setupUI();
@@ -88,7 +87,6 @@ public class RegisterActivity extends CheckedFormActivity {
         saveButton = findViewById(R.id.saveButton);
         poidsField = findViewById(R.id.poidsField);
         registerDateField = findViewById(R.id.registerDate);
-        dateField = findViewById(R.id.editDate);
         repondantPatientRGroup = findViewById(R.id.radioRepondantG);
         ddnField = findViewById(R.id.dDN);
         sexeRGroup = findViewById(R.id.sexeRadioG);
@@ -209,42 +207,49 @@ public class RegisterActivity extends CheckedFormActivity {
         });
 
         Utils.toast(RegisterActivity.this, villageSpinner.toString());
+
+        ArrayList ethnies = buildArray("ETHNIE");
         ethnieSpinner = findViewById(R.id.ethSpinner);
         ArrayAdapter<String> ethAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, Constants.getETHNIE());
+                android.R.layout.simple_spinner_item, ethnies);
         ethnieSpinner.setAdapter(ethAdapter);
 
+        ArrayList etatCivil = buildArray("ETAT_CIVIL");
         etatCivilPatientSpinner  = findViewById(R.id.statutSpinner);
         ArrayAdapter<String> sAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, Constants.getStatut());
+                android.R.layout.simple_spinner_item, etatCivil);
         etatCivilPatientSpinner.setAdapter(sAdapter);
 
+        ArrayList scolarisations = buildArray("N_SCOLAIRE");
         niveauScolaireSpinner = findViewById(R.id.scolSpinner);
         ArrayAdapter<String> sAAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item,Constants.getScolarisation());
+                android.R.layout.simple_spinner_item, scolarisations);
         niveauScolaireSpinner.setAdapter(sAAdapter);
 
+        ArrayList professions = buildArray("PROFESSIONS");
         professionPrincipaleSpinner  = findViewById(R.id.profSpinner);
         ArrayAdapter<String> sPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item,Constants.getProfession());
+                android.R.layout.simple_spinner_item, professions);
         professionPrincipaleSpinner.setAdapter(sPAdapter);
 
+        ArrayList pertes_connaissances = buildArray("PERTE_CONNAISSANCE");
         nbPerteConnaissanceSpinner  = findViewById(R.id.santSpinner);
         ArrayAdapter<String> saPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item,Constants.getSANTE());
+                android.R.layout.simple_spinner_item, pertes_connaissances);
         nbPerteConnaissanceSpinner.setAdapter(saPAdapter);
 
-
+        ArrayList crisesGeneralisees = buildArray("CRISES_G");
         crisesGeneraliseeSpinner = findViewById(R.id.crisesGeneralisee);
         ArrayAdapter<String> CGPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item,Constants.getCRISEGENERAL());
+                android.R.layout.simple_spinner_item, crisesGeneralisees);
         crisesGeneraliseeSpinner.setAdapter(CGPAdapter);
 
 
+        ArrayList crisesPartielles = buildArray("CRISES_P");
         crisesPartiellesSpinner = findViewById(R.id.crisesPartielles);
-        ArrayAdapter<String> CPPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item,Constants.getCRISEPARTIELLE());
-       crisesPartiellesSpinner.setAdapter(CPPAdapter);
+        ArrayAdapter<String> cPPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, crisesPartielles);
+       crisesPartiellesSpinner.setAdapter(cPPAdapter);
 
         final RegisterData report = RegisterData.get();
         if (!report.isSend){
@@ -269,7 +274,7 @@ public class RegisterActivity extends CheckedFormActivity {
         report.ddn = Utils.getDateFromDatePicker(ddnField);
         report.sexe = getIntOnRadioGroup(sexeRGroup);
         report.ethnie = Utils.stringFromSpinner(ethnieSpinner);
-//        report.etatCivilPatient = Utils.stringFromSpinner(etatCivilPatientSpinner);
+        report.etat_civil_patient = Utils.stringFromSpinner(etatCivilPatientSpinner);
 //        report.niveauScolaire = Utils.stringFromSpinner(niveauScolaireSpinner);
 //        report.professionPrincipale = Utils.stringFromSpinner(professionPrincipaleSpinner);
 //        report.coordonneesGPS = Utils.stringFromField(coordonneesGPSField);
@@ -322,11 +327,11 @@ public class RegisterActivity extends CheckedFormActivity {
             sexeRGroup.check(R.id.feminin);
         }
 
-        if (!report.ethnie.equals("")) {
-            int pos = new ArrayList<String>(Arrays.asList(Constants.getETHNIE())).indexOf(report.ethnie);
-            Log.d(TAG, "ethnie " + pos);
-            ethnieSpinner.setSelection(pos);
-        }
+//        if (!report.ethnie.equals("")) {
+//            int pos = new ArrayList<String>(Arrays.asList(Constants.getETHNIE())).indexOf(report.ethnie);
+//            Log.d(TAG, "ethnie " + pos);
+//            ethnieSpinner.setSelection(pos);
+//        }
     }
 
     protected boolean setupInvalidInputChecks() {
@@ -377,4 +382,32 @@ public class RegisterActivity extends CheckedFormActivity {
         }
         return json;
     }
+
+    public ArrayList buildArray(String jkey) {
+
+        ArrayList spinnerArrayName = new ArrayList();
+        ArrayList spinnerArrayCode = new ArrayList();
+//        ArrayList arrayList = new ArrayList();
+        try {
+            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+            JSONObject arrayKey = jsonObject.getJSONObject(jkey);
+            for(int i=0; i<arrayKey.names().length(); i++) {
+                try {
+                    Object jb = arrayKey.names().get(i);
+                    Log.i(TAG, String.valueOf(jb));
+                    spinnerArrayCode.add(jb.toString());
+                    spinnerArrayName.add(arrayKey.get(jb.toString()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+//            arrayList.add(spinnerArrayCode);
+//            arrayList.add(spinnerArray);
+        } catch (JSONException e) {
+            Log.d(TAG, e.toString());
+        }
+        return spinnerArrayName;
+
+    }
+
 }
