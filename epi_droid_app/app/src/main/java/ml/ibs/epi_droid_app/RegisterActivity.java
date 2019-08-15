@@ -253,7 +253,6 @@ public class RegisterActivity extends CheckedFormActivity {
 
         final RegisterData report = RegisterData.get();
         if (!report.isSend){
-//            Log.d(TAG, String.valueOf(report.isSend));
             restoreReportData();
         }
     }
