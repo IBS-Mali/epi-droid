@@ -100,6 +100,8 @@ public class Utils extends AppCompatActivity {
     }
     protected static String stringFromSpinner(Spinner spinner) {
         return spinner.getSelectedItem().toString();
+    }    protected static String stringFromSpinner(Spinner spinner, ArrayList codeList) {
+        return codeList.get(spinner.getSelectedItemPosition()).toString();
     }
     public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
         int day = datePicker.getDayOfMonth();

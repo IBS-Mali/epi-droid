@@ -11,31 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="10dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <TextView
-            android:id="@+id/formulairesuivi"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="#551919B3"
-            android:text="@string/title_activity_suivi"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
-        <EditText
-            android:id="@+id/idPatient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="date"
-            android:hint="Id patient" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
+            style="@style/titleLabel"
             android:inputType="date"
             android:text="Date visite" />
 
@@ -44,21 +21,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:calendarViewShown="false" />
+        <EditText
+            android:id="@+id/idPatient"
+            style="@style/editText"
+            android:inputType="date"
+            android:hint="Id patient" />
 
         <TextView
             android:id="@+id/observation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Observance" />
+            style="@style/titleLabel"
+            android:text="Observance" />
 
         <EditText
             android:id="@+id/nombrePlaquette"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            style="@style/editText"
             android:inputType="number"
             android:hint="Nombre plaquette vide"/>
 
+        <TextView
+            android:id="@+id/effeteText"
+            style="@style/titleLabel"
+            android:text="Effets indésirables ?" />
         <RadioGroup
             android:id="@+id/effeRadio"
             android:layout_width="match_parent"
@@ -66,12 +49,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/effeteText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|center_vertical"
-                android:text="Effets indésirables ?" />
             <RadioButton
                 android:id="@+id/effetnOui"
                 android:layout_width="wrap_content"
@@ -84,14 +61,16 @@
                 android:text="NON" />
         </RadioGroup>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/titleLabel"
             android:text="Si oui appelé/SMS"/>
         <EditText
-            android:hint="Les quelles ?"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            style="@style/editText"
+            android:hint="Les quelles ?" />
 
+        <TextView
+            style="@style/titleLabel"
+            android:id="@+id/criseeText"
+            android:text=" Si crise?" />
         <RadioGroup
             android:id="@+id/criseRadio"
             android:layout_width="match_parent"
@@ -99,12 +78,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/criseeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|center_vertical"
-                android:text=" Si crise?" />
             <RadioButton
                 android:id="@+id/buttonOui"
                 android:layout_width="wrap_content"
@@ -117,20 +90,14 @@
                 android:text="NON" />
         </RadioGroup>
         <EditText
+            style="@style/editText"
             android:id="@+id/frequence"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
             android:inputType="number"
             android:hint="Fréquence mensuelle des crises"/>
 
         <EditText
+            style="@style/editText"
             android:id="@+id/intensite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
             android:inputType="number"
             android:hint="Intensité mensuelle" />
 

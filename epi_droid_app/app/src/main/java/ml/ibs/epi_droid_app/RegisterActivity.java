@@ -1,6 +1,7 @@
 package ml.ibs.epi_droid_app;
 
 import android.os.Bundle;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +20,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class RegisterActivity extends CheckedFormActivity {
@@ -62,13 +67,40 @@ public class RegisterActivity extends CheckedFormActivity {
     private String sexePatient;
 //    private int repondantIsPatient;
     private Boolean perteConnaissance;
-    private Spinner nbPerteConnaissanceSpinner;
+    private Spinner perteConnaissanceSpinner;
     private String villige_code;
     private Spinner crisesGeneraliseeSpinner;
     private Spinner crisesPartiellesSpinner;
     private TextView dateField;
     private List spinnerArray;
     private List spinnerArrayCode;
+    private ArrayList<String> ethniesCode;
+    private ArrayList<String> ethniesValue;
+    private ArrayList<String> etatCivilCode;
+    private ArrayList<String> etatCivilValue;
+    private ArrayList<String> scolarityCode;
+    private ArrayList<String> scolarityValue;
+    private ArrayList<String> professionCode;
+    private ArrayList<String> professionValue;
+    private ArrayList<String> pertesConnaissanceCode;
+    private ArrayList<String> pertesConnaissanceValue;
+    private ArrayList<String> crisesGeneraliseesCode;
+    private ArrayList<String> crisesGeneraliseesValue;
+    private ArrayList<String> crisesPartiellesCode;
+    private ArrayList<String> crisesPartiellesValue;
+    private ArrayList<String> oNNspMapCode;
+    private ArrayList<String> oNNspMapValue;
+    private ArrayList<String> priseMMCode;
+    private ArrayList<String> priseMMValue;
+    private ArrayList<String> antiEpiCode;
+    private ArrayList<String> antiEpiValue;
+    private Spinner oNNspMapSpinner;
+    private Spinner secousMapSpinner;
+    private Spinner appariMapSpinner;
+    private Spinner priseMMSpinner;
+    private Spinner etatMapSpinner;
+    private Spinner antiEpiSpinner;
+    private Spinner priseMTSpinner;
 
 
     @Override
@@ -90,30 +122,6 @@ public class RegisterActivity extends CheckedFormActivity {
         repondantPatientRGroup = findViewById(R.id.radioRepondantG);
         ddnField = findViewById(R.id.dDN);
         sexeRGroup = findViewById(R.id.sexeRadioG);
-//        ethnieField = findViewById(R.id.ethnie);
-//        etatCivilPatientField = findViewById(R.id.etatCivilPatient);
-//        niveauScolaireField = findViewById(R.id.niveauScolaire);
-//        professionPrincipaleField = findViewById(R.id.professionPrincipale);
-//        coordonneesGPSField = findViewById(R.id.coordonneesGPS);
-//        perteConnaissanceField = findViewById(R.id.perteConnaissance);
-//        perteUrineField = findViewById(R.id.perteUrine);
-//        emissionBaveField = findViewById(R.id.emissionBave);
-//        absenceContactField = findViewById(R.id.absenceContact);
-//        secoussesAnormauxIncontrolablesField = findViewById(R.id.secoussesAnormauxIncontrolables);
-//        apparitionBrutaleField = findViewById(R.id.apparitionBrutale);
-//        personneEtaitEpileptiqueField = findViewById(R.id.personneEtaitEpileptique);
-//        sujetEpileptiqueField = findViewById(R.id.sujetEpileptique);
-//        ageDebutEpilepsieField = findViewById(R.id.ageDebutEpilepsie);
-//        crise2DernieresAnneesField = findViewById(R.id.crise2DernieresAnnees);
-//        crisesGeneraliseeSpinner = findViewById(R.id.crisesGeneralisee);
-//        crisesPartiellesSpinner = findViewById(R.id.crisesPartielles);
-//        nbCrisesEpilepsieField = findViewById(R.id.nbCrisesEpilepsie);
-//        priseMedicamentsModerneField = findViewById(R.id.priseMedicamentsModerne);
-//        priseAntiepileptiquesModernesField = findViewById(R.id.priseAntiepileptiquesModernes);
-//        priseMedicamentsTraditiionnelField = findViewById(R.id.priseMedicamentsTraditiionnel);
-//        antecedentsFamiliauxField = findViewById(R.id.antecedentsFamiliaux);
-//        autresAntecedentsNeurologiquesFamiliauxField = findViewById(R.id.autresAntecedentsNeurologiquesFamiliaux);
-//        quelsAntecedentsNeurologiquesFamiliauxField = findViewById(R.id.quelsAntecedentsNeurologiquesFamiliau);
 
         saveSubmitButton = findViewById(R.id.saveSubmitButton);
 
@@ -142,34 +150,6 @@ public class RegisterActivity extends CheckedFormActivity {
                     Constants.SMS_KEYWORD, buildSMSText());
             }
         });
-//         sexeRGroup = findViewById(R.id.sexeRadioG);
-//        sexeRadioG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//            switch(checkedId){
-//                case R.id.masculin:
-//                    sexePatient  = "M";
-//                    break;
-//                case R.id.feminin:
-//                    sexePatient  = "F";
-//                    break;
-//            }
-//            Utils.toast(RegisterActivity.this, selectedID + " dkd");
-//            Utils.toast(getBaseContext(), sexePatient);
-//            }
-//        });
-//          repondantPatientRGroup = findViewById(R.id.radioRepondantG);
-//        repondantPatientRGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//            switch(checkedId){
-//                case R.id.repondantNon:
-//                    repondantIsPatient = 0;
-//                    break;
-//                case R.id.repondantOUI:
-//                    repondantIsPatient  = 1;
-//                    break;
-//            }
-//            }
-//        });
 
         spinnerArray = new ArrayList();
         spinnerArrayCode = new ArrayList();
@@ -206,51 +186,109 @@ public class RegisterActivity extends CheckedFormActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
-        Utils.toast(RegisterActivity.this, villageSpinner.toString());
 
-        ArrayList ethnies = buildArray("ETHNIE");
+        HashMap<String, String> hmapEth = buildArray("ETHNIE");
+        ethniesCode = new ArrayList<String>(hmapEth.keySet());
+        ethniesValue = new ArrayList<String>(hmapEth.values());
+
         ethnieSpinner = findViewById(R.id.ethSpinner);
         ArrayAdapter<String> ethAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, ethnies);
+                android.R.layout.simple_spinner_item, ethniesValue);
         ethnieSpinner.setAdapter(ethAdapter);
 
-        ArrayList etatCivil = buildArray("ETAT_CIVIL");
+        HashMap<String, String>  etatCivilMap = buildArray("ETAT_CIVIL");
+        etatCivilCode = new ArrayList<String>(etatCivilMap.keySet());
+        etatCivilValue = new ArrayList<String>(etatCivilMap.values());
         etatCivilPatientSpinner  = findViewById(R.id.statutSpinner);
         ArrayAdapter<String> sAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, etatCivil);
+                android.R.layout.simple_spinner_item, etatCivilValue);
         etatCivilPatientSpinner.setAdapter(sAdapter);
 
-        ArrayList scolarisations = buildArray("N_SCOLAIRE");
+        HashMap<String, String>  scolarityMap = buildArray("N_SCOLAIRE");
+        scolarityCode = new ArrayList<String>(scolarityMap.keySet());
+        scolarityValue = new ArrayList<String>(scolarityMap.values());
         niveauScolaireSpinner = findViewById(R.id.scolSpinner);
         ArrayAdapter<String> sAAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, scolarisations);
+                android.R.layout.simple_spinner_item, scolarityValue);
         niveauScolaireSpinner.setAdapter(sAAdapter);
 
-        ArrayList professions = buildArray("PROFESSIONS");
+        HashMap<String, String>  professionMap = buildArray("PROFESSIONS");
+        professionCode = new ArrayList<String>(professionMap.keySet());
+        professionValue = new ArrayList<String>(professionMap.values());
         professionPrincipaleSpinner  = findViewById(R.id.profSpinner);
         ArrayAdapter<String> sPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, professions);
+                android.R.layout.simple_spinner_item, professionValue);
         professionPrincipaleSpinner.setAdapter(sPAdapter);
 
-        ArrayList pertes_connaissances = buildArray("PERTE_CONNAISSANCE");
-        nbPerteConnaissanceSpinner  = findViewById(R.id.santSpinner);
+        HashMap<String, String>  pertesConnaissanceMap = buildArray("PERTE_CONNAISSANCE");
+        pertesConnaissanceCode = new ArrayList<String>(pertesConnaissanceMap.keySet());
+        pertesConnaissanceValue = new ArrayList<String>(pertesConnaissanceMap.values());
+        perteConnaissanceSpinner  = findViewById(R.id.pertConnaissanceSpinner);
         ArrayAdapter<String> saPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, pertes_connaissances);
-        nbPerteConnaissanceSpinner.setAdapter(saPAdapter);
+                android.R.layout.simple_spinner_item, pertesConnaissanceValue);
+        perteConnaissanceSpinner.setAdapter(saPAdapter);
 
-        ArrayList crisesGeneralisees = buildArray("CRISES_G");
+        HashMap<String, String>  crisesGeneraliseesMap = buildArray("CRISES_G");
+        crisesGeneraliseesCode = new ArrayList<String>(crisesGeneraliseesMap.keySet());
+        crisesGeneraliseesValue = new ArrayList<String>(crisesGeneraliseesMap.values());
         crisesGeneraliseeSpinner = findViewById(R.id.crisesGeneralisee);
         ArrayAdapter<String> CGPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, crisesGeneralisees);
+                android.R.layout.simple_spinner_item, crisesGeneraliseesValue);
         crisesGeneraliseeSpinner.setAdapter(CGPAdapter);
 
 
-        ArrayList crisesPartielles = buildArray("CRISES_P");
+        HashMap<String, String>  crisesPartiellesMap = buildArray("CRISES_P");
+        crisesPartiellesCode = new ArrayList<String>(crisesPartiellesMap.keySet());
+        crisesPartiellesValue = new ArrayList<String>(crisesPartiellesMap.values());
         crisesPartiellesSpinner = findViewById(R.id.crisesPartielles);
         ArrayAdapter<String> cPPAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, crisesPartielles);
-       crisesPartiellesSpinner.setAdapter(cPPAdapter);
+                android.R.layout.simple_spinner_item, crisesPartiellesValue);
+        crisesPartiellesSpinner.setAdapter(cPPAdapter);
 
+        HashMap<String, String>  oNNspMap = buildArray("O_N_NSP");
+        oNNspMapCode = new ArrayList<String>(oNNspMap.keySet());
+        oNNspMapValue = new ArrayList<String>(oNNspMap.values());
+
+        oNNspMapSpinner = findViewById(R.id.absenceSpinner);
+        ArrayAdapter<String> oNNspAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, oNNspMapValue);
+        oNNspMapSpinner.setAdapter(oNNspAdapter);
+
+        secousMapSpinner = findViewById(R.id.seousseSpinner);
+        ArrayAdapter<String> seousseMapAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, oNNspMapValue);
+        secousMapSpinner.setAdapter(seousseMapAdapter);
+
+        appariMapSpinner = findViewById(R.id.apparitionSpinner);
+        ArrayAdapter<String> appariAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, oNNspMapValue);
+        appariMapSpinner.setAdapter(appariAdapter);
+
+        etatMapSpinner = findViewById(R.id.etatEpiSpinner);
+        ArrayAdapter<String> etatAdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, oNNspMapValue);
+        etatMapSpinner.setAdapter(etatAdapter);
+
+        HashMap<String, String>  priseMMMap = buildArray("PRISE_MEDOC");
+        priseMMCode = new ArrayList<String>(priseMMMap.keySet());
+        priseMMValue = new ArrayList<String>(priseMMMap.values());
+        priseMMSpinner = findViewById(R.id.priseMModerne);
+        ArrayAdapter<String> priseMMdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, priseMMValue);
+        priseMMSpinner.setAdapter(priseMMdapter);
+
+        HashMap<String, String>  antiEpiMap = buildArray("ANT_EPI_M");
+        antiEpiCode = new ArrayList<String>(antiEpiMap.keySet());
+        antiEpiValue = new ArrayList<String>(antiEpiMap.values());
+        antiEpiSpinner = findViewById(R.id.priseAntiEpiModerne);
+        ArrayAdapter<String> antiEpidapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, antiEpiValue);
+        antiEpiSpinner.setAdapter(antiEpidapter);
+
+        priseMTSpinner = findViewById(R.id.priseTraditionnel);
+        ArrayAdapter<String> priseMTdapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_item, priseMMValue);
+        priseMTSpinner.setAdapter(priseMTdapter);
         final RegisterData report = RegisterData.get();
         if (!report.isSend){
             restoreReportData();
@@ -261,7 +299,6 @@ public class RegisterActivity extends CheckedFormActivity {
     protected void storeReportData() {
         Log.d(TAG, "storeData");
 
-        Utils.toast(RegisterActivity.this, String.valueOf(getIntOnRadioGroup(repondantPatientRGroup)));
         RegisterData report = RegisterData.get();
         report.updateMetaData();
         report.nom = Utils.stringFromField(nomField);
@@ -272,33 +309,14 @@ public class RegisterActivity extends CheckedFormActivity {
         report.repondant_patient = getIntOnRadioGroup(repondantPatientRGroup);
         report.ddn = Utils.getDateFromDatePicker(ddnField);
         report.sexe = getIntOnRadioGroup(sexeRGroup);
-        report.ethnie = Utils.stringFromSpinner(ethnieSpinner);
-        report.etat_civil_patient = Utils.stringFromSpinner(etatCivilPatientSpinner);
-//        report.niveauScolaire = Utils.stringFromSpinner(niveauScolaireSpinner);
-//        report.professionPrincipale = Utils.stringFromSpinner(professionPrincipaleSpinner);
-//        report.coordonneesGPS = Utils.stringFromField(coordonneesGPSField);
-//        report.perteConnaissance = perteConnaissance;
-//        report.perteUrine = Utils.stringFromField(perteUrineField);
-//        report.emissionBave = Utils.stringFromField(emissionBaveField);
-//        report.absenceContact = Utils.stringFromField(absenceContactField);
-//        report.secoussesAnormauxIncontrolables = Utils.stringFromField(secoussesAnormauxIncontrolablesField);
-//        report.apparitionBrutale = Utils.stringFromField(apparitionBrutaleField);
-//        report.personneEtaitEpileptique = Utils.stringFromField(personneEtaitEpileptiqueField);
-//        report.sujetEpileptique = Utils.stringFromField(sujetEpileptiqueField);
-//        report.ageDebutEpilepsie = Utils.stringFromField(ageDebutEpilepsieField);
-//        report.crise2DernieresAnnees = Utils.stringFromField(crise2DernieresAnneesField);
-//        report.crisesGeneralisee = Utils.stringFromSpinner(crisesGeneraliseeField);
-//        report.crisesPartielles = Utils.stringFromSpinner(crisesPartiellesField);
-//        report.nbCrisesEpilepsie = Utils.stringFromField(nbCrisesEpilepsieField);
-//        report.priseMedicamentsModerne = Utils.stringFromField(priseMedicamentsModerneField);
-//        report.priseAntiepileptiquesModernes = Utils.stringFromField(priseAntiepileptiquesModernesField);
-//        report.priseMedicamentsTraditiionnel = Utils.stringFromField(priseMedicamentsTraditiionnelField);
-//        report.antecedentsFamiliaux = Utils.stringFromField(antecedentsFamiliauxField);
-//        report.autresAntecedentsNeurologiquesFamiliaux = Utils.stringFromField(autresAntecedentsNeurologiquesFamiliauxField);
-//        report.quelsAntecedentsNeurologiquesFamiliaux = Utils.stringFromField(quelsAntecedentsNeurologiquesFamiliauxField);
+        report.ethnie = Utils.stringFromSpinner(ethnieSpinner, ethniesCode);
+        report.etat_civil_patient = Utils.stringFromSpinner(etatCivilPatientSpinner, etatCivilCode);
+        report.niveau_scolaire = Utils.stringFromSpinner(niveauScolaireSpinner, scolarityCode);
+        report.profession_principale = Utils.stringFromSpinner(professionPrincipaleSpinner, professionCode);
+
         report.safeSave();
 
-        Utils.toast(RegisterActivity.this, String.valueOf(Utils.stringFromSpinner(ethnieSpinner)));
+//        Utils.toast(RegisterActivity.this, Utils.stringFromSpinner(ethnieSpinner, ethniesCode));
         Log.d(TAG, "storeReportData -- end");
     }
 
@@ -312,6 +330,10 @@ public class RegisterActivity extends CheckedFormActivity {
         setTextOnField(nomField, report.nom);
         setTextOnField(prenomField, report.prenom);
         setTextOnField(poidsField, report.poids);
+        setWithIndexOnSpinner(ethnieSpinner, ethniesCode, report.ethnie);
+        setWithIndexOnSpinner(etatCivilPatientSpinner, etatCivilCode, report.etat_civil_patient);
+        setWithIndexOnSpinner(niveauScolaireSpinner, scolarityCode, report.niveau_scolaire);
+        setWithIndexOnSpinner(professionPrincipaleSpinner, professionCode, report.profession_principale);
 //        checkOnRadio(repondantPatientRGroup, report.repondant_patient);
         if (report.repondant_patient==1) {
             repondantPatientRGroup.check(R.id.repondantOUI);
@@ -382,30 +404,27 @@ public class RegisterActivity extends CheckedFormActivity {
         return json;
     }
 
-    public ArrayList buildArray(String jkey) {
+    public HashMap<String, String> buildArray(String jkey) {
 
-        ArrayList spinnerArrayName = new ArrayList();
-        ArrayList spinnerArrayCode = new ArrayList();
-//        ArrayList arrayList = new ArrayList();
+        HashMap<String, String> spinnerMap = new HashMap<String, String>();
         try {
             JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
             JSONObject arrayKey = jsonObject.getJSONObject(jkey);
             for(int i=0; i<arrayKey.names().length(); i++) {
                 try {
                     Object jb = arrayKey.names().get(i);
-                    Log.i(TAG, String.valueOf(jb));
-                    spinnerArrayCode.add(jb.toString());
-                    spinnerArrayName.add(arrayKey.get(jb.toString()));
+                    String code = jb.toString();
+                    spinnerMap.put(code, arrayKey.get(code).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-//            arrayList.add(spinnerArrayCode);
-//            arrayList.add(spinnerArray);
+//            Log.d(TAG, "SP = " + keyList);
         } catch (JSONException e) {
             Log.d(TAG, e.toString());
         }
-        return spinnerArrayName;
+
+        return spinnerMap;
 
     }
 

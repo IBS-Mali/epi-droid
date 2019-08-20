@@ -14,108 +14,99 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="GESTION DE STOCK"
-        android:textSize="30dp"
-        android:gravity="center"/>
-
         <TextView
-            android:textSize="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="phénobarbital" />
+            style="@style/sectionLabel"
+            android:text="Phénobarbital" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="QUANTE RECUE" />
+            style="@style/editText"
+            android:hint="QUANTE RECUE" />
 
         <LinearLayout
             android:id="@+id/sw"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" QUANTITE UTILISEE" />
+                style="@style/editText"
+                android:layout_weight=".50"
+                android:hint=" QUANTITE UTILISEE" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/editText"
                 android:layout_weight=".50"
-                android:text="QUANTITE PERDUE" />
+                android:hint="QUANTITE PERDUE" />
 
         </LinearLayout>
 
         <TextView
-            android:textSize="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="carbamazepine" />
+            style="@style/sectionLabel"
+            android:text="Carbamazepine" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="QUANTE RECUE" />
+            style="@style/editText"
+            android:hint="QUANTE RECUE" />
 
         <LinearLayout
             android:id="@+id/w"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" QUANTITE UTILISEE" />
+                style="@style/editText"
+                android:layout_weight=".50"
+                android:hint=" QUANTITE UTILISEE" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/editText"
                 android:layout_weight=".50"
-                android:text="QUANTITE PERDUE" />
+                android:hint="QUANTITE PERDUE" />
         </LinearLayout>
 
         <TextView
-            android:textSize="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="sodium valproate" />
+            style="@style/sectionLabel"
+            android:text="Sodium valproate" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="QUANTE RECUE" />
+            style="@style/editText"
+            android:hint="QUANTE RECUE" />
 
         <LinearLayout
             android:id="@+id/ew"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" QUANTITE UTILISEE" />
+                style="@style/editText"
+                android:layout_weight=".50"
+                android:hint=" QUANTITE UTILISEE" />
 
             <EditText
+                style="@style/editText"
+                android:layout_weight=".50"
+                android:hint="QUANTITE PERDUE" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".50"
-                android:text="QUANTITE PERDUE" />
+                android:text="Sauvegarder" />
+
+            <Button
+                android:id="@+id/saveSubmitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:text="Envoyer" />
         </LinearLayout>
     </LinearLayout>
     </ScrollView>

@@ -24,9 +24,7 @@ public class RegisterData extends BaseData {
     String niveau_scolaire = "";
     String profession_principale = "";
     String coordonnees_gps = "";
-    Boolean perte_connaissance = false;
-    Boolean perte_urine = false;
-    Boolean emission_bave = false;
+    String perte_connaissance = "";
     String absence_contact = "";
     String secousses_anormaux_incontrolables = "";
     String apparition_brutale = "";
@@ -163,8 +161,6 @@ public class RegisterData extends BaseData {
                 this.profession_principale  + Constants.sepaData +
                 this.coordonnees_gps  + Constants.sepaData +
                 this.perte_connaissance  + Constants.sepaData +
-                this.perte_urine  + Constants.sepaData +
-                this.emission_bave  + Constants.sepaData +
                 this.absence_contact  + Constants.sepaData +
                 this.secousses_anormaux_incontrolables  + Constants.sepaData +
                 this.apparition_brutale  + Constants.sepaData +

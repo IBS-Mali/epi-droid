@@ -24,4 +24,21 @@
         <item name="android:padding">5dp</item>
         <item name="android:background">@drawable/boutonenregistrer</item>
     </style>
+    <style name="titleLabel">
+        <item name="android:layout_width" >match_parent</item>
+        <item name="android:layout_height" >wrap_content</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:background">#699ED1</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="sectionLabel">
+        <item name="android:layout_width" >match_parent</item>
+        <item name="android:layout_height" >wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:background">#3967DC</item>
+        <item name="android:textColor">#E5F0E5</item>
+    </style>
 </resources>
