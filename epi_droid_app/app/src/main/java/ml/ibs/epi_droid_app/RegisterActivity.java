@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Button;
@@ -33,14 +35,17 @@ public class RegisterActivity extends CheckedFormActivity {
 
     private Button saveSubmitButton;
     private Button saveButton;
-    private Spinner villageSpinner;
     private EditText poidsField;
     private DatePicker registerDateField;
     private EditText nomField;
     private EditText prenomField;
+    private EditText startYearField;
     private RadioGroup repondantPatientRGroup;
     private DatePicker ddnField;
     private RadioGroup sexeRGroup;
+    private RadioGroup sujetEpileptiqueG;
+    private RadioGroup typeCrisesG;
+    private RadioGroup anteNeurologiquesG;
     private Spinner ethnieSpinner;
     private Spinner etatCivilPatientSpinner;
     private Spinner niveauScolaireSpinner;
@@ -69,8 +74,6 @@ public class RegisterActivity extends CheckedFormActivity {
     private Boolean perteConnaissance;
     private Spinner perteConnaissanceSpinner;
     private String villige_code;
-    private Spinner crisesGeneraliseeSpinner;
-    private Spinner crisesPartiellesSpinner;
     private TextView dateField;
     private List spinnerArray;
     private List spinnerArrayCode;
@@ -92,15 +95,28 @@ public class RegisterActivity extends CheckedFormActivity {
     private ArrayList<String> oNNspMapValue;
     private ArrayList<String> priseMMCode;
     private ArrayList<String> priseMMValue;
-    private ArrayList<String> antiEpiCode;
-    private ArrayList<String> antiEpiValue;
+    private ArrayList<String> antiEpiMCode;
+    private ArrayList<String> antiEpiMValue;
+    private Spinner villageSpinner;
     private Spinner oNNspMapSpinner;
     private Spinner secousMapSpinner;
     private Spinner appariMapSpinner;
     private Spinner priseMMSpinner;
     private Spinner etatMapSpinner;
-    private Spinner antiEpiSpinner;
+    private Spinner antiEpiMSpinner;
     private Spinner priseMTSpinner;
+    private Spinner crisesGeneraliseeSpinner;
+    private Spinner crisesPartiellesSpinner;
+    private EditText nbPerDayField;
+    private EditText nbPerMonthField;
+    private EditText nbPerYearField;
+    private RadioGroup antecedentFlleG;
+    private CheckBox neuropaludismeChecBox;
+    private CheckBox meningiteChecBox;
+    private CheckBox encephaliteChecBox;
+    private CheckBox accouchementDChecBox;
+    private CheckBox idencephalite;
+    private CheckBox avcChecBox;
 
 
     @Override
@@ -122,12 +138,10 @@ public class RegisterActivity extends CheckedFormActivity {
         repondantPatientRGroup = findViewById(R.id.radioRepondantG);
         ddnField = findViewById(R.id.dDN);
         sexeRGroup = findViewById(R.id.sexeRadioG);
-
+        startYearField = findViewById(R.id.startYear);
         saveSubmitButton = findViewById(R.id.saveSubmitButton);
-
         // setup invalid inputs checks
         setupInvalidInputChecks();
-
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -172,7 +186,6 @@ public class RegisterActivity extends CheckedFormActivity {
         }
 
         villageSpinner = findViewById(R.id.villageSpinner);
-
         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(this, android.R.layout.simple_spinner_item, spinnerArray);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         villageSpinner.setAdapter(spinnerAdapter);
@@ -185,7 +198,6 @@ public class RegisterActivity extends CheckedFormActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
-
 
         HashMap<String, String> hmapEth = buildArray("ETHNIE");
         ethniesCode = new ArrayList<String>(hmapEth.keySet());
@@ -236,7 +248,6 @@ public class RegisterActivity extends CheckedFormActivity {
                 android.R.layout.simple_spinner_item, crisesGeneraliseesValue);
         crisesGeneraliseeSpinner.setAdapter(CGPAdapter);
 
-
         HashMap<String, String>  crisesPartiellesMap = buildArray("CRISES_P");
         crisesPartiellesCode = new ArrayList<String>(crisesPartiellesMap.keySet());
         crisesPartiellesValue = new ArrayList<String>(crisesPartiellesMap.values());
@@ -269,6 +280,9 @@ public class RegisterActivity extends CheckedFormActivity {
                 android.R.layout.simple_spinner_item, oNNspMapValue);
         etatMapSpinner.setAdapter(etatAdapter);
 
+        sujetEpileptiqueG = findViewById(R.id.sujetEpileptiqueG);
+        typeCrisesG = findViewById(R.id.typeCrisesG);
+
         HashMap<String, String>  priseMMMap = buildArray("PRISE_MEDOC");
         priseMMCode = new ArrayList<String>(priseMMMap.keySet());
         priseMMValue = new ArrayList<String>(priseMMMap.values());
@@ -276,19 +290,42 @@ public class RegisterActivity extends CheckedFormActivity {
         ArrayAdapter<String> priseMMdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item, priseMMValue);
         priseMMSpinner.setAdapter(priseMMdapter);
+        priseMMSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 String selectedItem = parent.getItemAtPosition(position).toString();
+                 LinearLayout pMMLY = findViewById(R.id.antiEpiModerneLY);
+                 if (selectedItem.equals("NON") || selectedItem.equals("Jamais")){
+                     pMMLY.setVisibility(View.GONE);
+                 } else {pMMLY.setVisibility(View.VISIBLE);}
+             }
+             @Override
+             public void onNothingSelected(AdapterView<?> adapterView) {}
+         });
 
         HashMap<String, String>  antiEpiMap = buildArray("ANT_EPI_M");
-        antiEpiCode = new ArrayList<String>(antiEpiMap.keySet());
-        antiEpiValue = new ArrayList<String>(antiEpiMap.values());
-        antiEpiSpinner = findViewById(R.id.priseAntiEpiModerne);
+        antiEpiMCode = new ArrayList<String>(antiEpiMap.keySet());
+        antiEpiMValue = new ArrayList<String>(antiEpiMap.values());
+        antiEpiMSpinner = findViewById(R.id.antiEpiModerne);
         ArrayAdapter<String> antiEpidapter = new ArrayAdapter<String>(RegisterActivity.this,
-                android.R.layout.simple_spinner_item, antiEpiValue);
-        antiEpiSpinner.setAdapter(antiEpidapter);
+                android.R.layout.simple_spinner_item, antiEpiMValue);
+        antiEpiMSpinner.setAdapter(antiEpidapter);
 
-        priseMTSpinner = findViewById(R.id.priseTraditionnel);
+        priseMTSpinner = findViewById(R.id.priseAntiEpiTraditionnel);
         ArrayAdapter<String> priseMTdapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_item, priseMMValue);
         priseMTSpinner.setAdapter(priseMTdapter);
+
+        nbPerDayField = findViewById(R.id.nbPerDay);
+        nbPerMonthField = findViewById(R.id.nbPerMonth);
+        nbPerYearField = findViewById(R.id.nbPerYear);
+        antecedentFlleG = findViewById(R.id.antecedentFlleG);
+        anteNeurologiquesG = findViewById(R.id.anteNeurologiquesG);
+        neuropaludismeChecBox = findViewById(R.id.neuropaludisme);
+        meningiteChecBox = findViewById(R.id.meningite);
+        encephaliteChecBox = findViewById(R.id.encephalite);
+        accouchementDChecBox = findViewById(R.id.accouchementD);
+        avcChecBox = findViewById(R.id.avc);
         final RegisterData report = RegisterData.get();
         if (!report.isSend){
             restoreReportData();
@@ -301,62 +338,121 @@ public class RegisterActivity extends CheckedFormActivity {
 
         RegisterData report = RegisterData.get();
         report.updateMetaData();
-        report.nom = Utils.stringFromField(nomField);
-        report.prenom = Utils.stringFromField(prenomField);
+        report.nom = stringFromField(nomField);
+        report.prenom = stringFromField(prenomField);
         report.village = villige_code;
-        report.poids = Utils.floatFromField(poidsField);
+        report.poids = floatFromField(poidsField);
         report.register_date = Utils.getDateFromDatePicker(registerDateField);
         report.repondant_patient = getIntOnRadioGroup(repondantPatientRGroup);
         report.ddn = Utils.getDateFromDatePicker(ddnField);
         report.sexe = getIntOnRadioGroup(sexeRGroup);
-        report.ethnie = Utils.stringFromSpinner(ethnieSpinner, ethniesCode);
-        report.etat_civil_patient = Utils.stringFromSpinner(etatCivilPatientSpinner, etatCivilCode);
-        report.niveau_scolaire = Utils.stringFromSpinner(niveauScolaireSpinner, scolarityCode);
-        report.profession_principale = Utils.stringFromSpinner(professionPrincipaleSpinner, professionCode);
-
+        report.ethnie = stringFromSpinner(ethnieSpinner, ethniesCode);
+        report.etat_civil_patient = stringFromSpinner(etatCivilPatientSpinner, etatCivilCode);
+        report.niveau_scolaire = stringFromSpinner(niveauScolaireSpinner, scolarityCode);
+        report.profession_principale = stringFromSpinner(professionPrincipaleSpinner, professionCode);
+//        TODO GPS
+        report.perte_connaissance = stringFromSpinner(perteConnaissanceSpinner, pertesConnaissanceCode);
+        report.absence_contact = stringFromSpinner(oNNspMapSpinner, oNNspMapCode);
+        report.secousses_anormaux_incontrolables = stringFromSpinner(secousMapSpinner, oNNspMapCode);
+        report.apparition_brutale = stringFromSpinner(appariMapSpinner, oNNspMapCode);
+        report.personne_etait_epileptique = stringFromSpinner(etatMapSpinner, oNNspMapCode);
+        report.sujet_epileptique = getIntOnRadioGroup(sujetEpileptiqueG);
+        report.annee_debut_epilepsie = integerFromField(startYearField);
+        report.crise_2_dernieres_annees = getIntOnRadioGroup(typeCrisesG);
+        report.crises_generalisee = stringFromSpinner(crisesGeneraliseeSpinner, crisesGeneraliseesCode);
+        report.crises_partielles = stringFromSpinner(crisesPartiellesSpinner, crisesPartiellesCode);
+        report.nb_crises_epilepsie_d = integerFromField(nbPerDayField);
+        report.nb_crises_epilepsie_m = integerFromField(nbPerMonthField);
+        report.nb_crises_epilepsie_y = integerFromField(nbPerYearField);
+        report.prise_medicaments_modernes = stringFromSpinner(priseMMSpinner, priseMMCode);
+        report.anti_epilepique_moderne = stringFromSpinner(antiEpiMSpinner, antiEpiMCode);
+        report.prise_medicaments_traditionnels = stringFromSpinner(priseMTSpinner, priseMMCode);
+        report.antecedents_familiaux = getIntOnRadioGroup(antecedentFlleG);
+        report.antecedents_neurologique = getIntOnRadioGroup(anteNeurologiquesG);
+        report.neuropaludisme = getIntCheckBox(neuropaludismeChecBox);
+        report.meningite = getIntCheckBox(meningiteChecBox);
+        report.encephalite = getIntCheckBox(encephaliteChecBox);
+        report.accouchement_d = getIntCheckBox(accouchementDChecBox);
+        report.avc = getIntCheckBox(avcChecBox);
         report.safeSave();
 
-//        Utils.toast(RegisterActivity.this, Utils.stringFromSpinner(ethnieSpinner, ethniesCode));
-        Log.d(TAG, "storeReportData -- end");
+        Utils.toast(RegisterActivity.this, "Sauvegardé avec succès");
+//        Log.d(TAG, "storeReportData -- end");
     }
 
     protected void restoreReportData() {
         Log.d(TAG, "restoreData");
 
         RegisterData report = RegisterData.get();
-//      TODO restore spinner village
         setWithIndexOnSpinner(villageSpinner, spinnerArrayCode, report.village);
         setDatetoDatePicker(registerDateField, report.register_date);
+        if (report.repondant_patient==1) {
+            checkOnRadio(repondantPatientRGroup, R.id.repondantOUI);
+        } else {
+            checkOnRadio(repondantPatientRGroup, R.id.repondantNon);
+        }
         setTextOnField(nomField, report.nom);
         setTextOnField(prenomField, report.prenom);
         setTextOnField(poidsField, report.poids);
+        setDatetoDatePicker(ddnField, report.ddn);
+        if (report.sexe == 0) {
+            checkOnRadio(sexeRGroup, R.id.masculin);
+        } else {
+            checkOnRadio(sexeRGroup, R.id.feminin);
+        }
         setWithIndexOnSpinner(ethnieSpinner, ethniesCode, report.ethnie);
         setWithIndexOnSpinner(etatCivilPatientSpinner, etatCivilCode, report.etat_civil_patient);
         setWithIndexOnSpinner(niveauScolaireSpinner, scolarityCode, report.niveau_scolaire);
         setWithIndexOnSpinner(professionPrincipaleSpinner, professionCode, report.profession_principale);
-//        checkOnRadio(repondantPatientRGroup, report.repondant_patient);
-        if (report.repondant_patient==1) {
-            repondantPatientRGroup.check(R.id.repondantOUI);
+        setWithIndexOnSpinner(perteConnaissanceSpinner, pertesConnaissanceCode, report.perte_connaissance);
+        setWithIndexOnSpinner(oNNspMapSpinner, oNNspMapCode, report.absence_contact);
+        setWithIndexOnSpinner(secousMapSpinner, oNNspMapCode, report.secousses_anormaux_incontrolables);
+        setWithIndexOnSpinner(appariMapSpinner, oNNspMapCode, report.apparition_brutale);
+        setWithIndexOnSpinner(etatMapSpinner, oNNspMapCode, report.personne_etait_epileptique);
+        if (report.sujet_epileptique == 0) {
+            checkOnRadio(sujetEpileptiqueG, R.id.sujetEpilepNon);
         } else {
-            repondantPatientRGroup.check(R.id.repondantNon);
+            checkOnRadio(sujetEpileptiqueG, R.id.sujetEpilepOui);
         }
-        setDatetoDatePicker(ddnField, report.ddn);
-//        checkOnRadio(sexeRGroup, report.sexe);
-        if (report.sexe == 1) {
-            sexeRGroup.check(R.id.masculin);
+        setTextOnField(startYearField, report.annee_debut_epilepsie);
+        if (report.crise_2_dernieres_annees == 0) {
+            checkOnRadio(typeCrisesG, R.id.typeCrisesNon);
         } else {
-            sexeRGroup.check(R.id.feminin);
+            checkOnRadio(typeCrisesG, R.id.typeCrisesOui);
         }
+        setWithIndexOnSpinner(crisesGeneraliseeSpinner, crisesGeneraliseesCode, report.crises_generalisee);
+        setWithIndexOnSpinner(crisesPartiellesSpinner, crisesPartiellesCode, report.crises_partielles);
 
-//        if (!report.ethnie.equals("")) {
-//            int pos = new ArrayList<String>(Arrays.asList(Constants.getETHNIE())).indexOf(report.ethnie);
-//            Log.d(TAG, "ethnie " + pos);
-//            ethnieSpinner.setSelection(pos);
-//        }
+        setTextOnField(nbPerDayField, report.nb_crises_epilepsie_d);
+        setTextOnField(nbPerMonthField, report.nb_crises_epilepsie_m);
+        setTextOnField(nbPerYearField, report.nb_crises_epilepsie_y);
+
+        setWithIndexOnSpinner(priseMMSpinner, priseMMCode, report.prise_medicaments_modernes);
+        setWithIndexOnSpinner(antiEpiMSpinner, antiEpiMCode, report.anti_epilepique_moderne);
+        setWithIndexOnSpinner(priseMTSpinner, priseMMCode, report.prise_medicaments_traditionnels);
+//      TODO ADD GET GPS
+        if (report.antecedents_familiaux == 0) {
+            checkOnRadio(antecedentFlleG, R.id.antecedentFlleNon);
+        } else {
+            checkOnRadio(antecedentFlleG, R.id.antecedentFlleOui);
+        }
+        if (report.antecedents_neurologique == 0) {
+            checkOnRadio(anteNeurologiquesG, R.id.anteNeurologiqueNon);
+        } else {
+            checkOnRadio(anteNeurologiquesG, R.id.anteNeurologiqueOui);
+        }
+        setCheckOnBox(neuropaludismeChecBox, report.neuropaludisme);
+        setCheckOnBox(meningiteChecBox, report.meningite);
+        setCheckOnBox(encephaliteChecBox, report.encephalite);
+        setCheckOnBox(accouchementDChecBox, report.accouchement_d);
+        setCheckOnBox(avcChecBox, report.avc);
     }
 
+
     protected boolean setupInvalidInputChecks() {
-        return assertNotEmpty(nomField) && assertNotEmpty(prenomField);
+        return assertNotEmpty(nomField) &&
+                assertNotEmpty(prenomField) &&
+                assertNotEmpty(poidsField);
     }
 
     protected boolean ensureDataCoherence(){return true;}
@@ -367,6 +463,25 @@ public class RegisterActivity extends CheckedFormActivity {
     }
 
     public void getCoord(){}
+
+    public void hideVisible(View view) {
+        hideVisible(R.id.startedYear, getIntOnRadioGroup(sujetEpileptiqueG));
+    }
+
+    public void hideVisibleCrisesL(View view) {
+        hideVisible(R.id.typeCrisesL, getIntOnRadioGroup(typeCrisesG));
+    }
+
+    public void anteNeurologiques(View view) {
+        hideVisible(R.id.anteNeurologiquesLY, getIntOnRadioGroup(anteNeurologiquesG));
+    }
+
+    public void hideVisible(int id, int selected) {
+        LinearLayout started = findViewById(id);
+        if (selected==1){
+            started.setVisibility(View.VISIBLE);
+        } else {started.setVisibility(View.GONE);}
+    }
 
     private static class StringWithTag {
         public String string;
@@ -379,7 +494,6 @@ public class RegisterActivity extends CheckedFormActivity {
 
         public String getWithTag(Object tag) {
            return this.string;
-
         }
 
         @Override

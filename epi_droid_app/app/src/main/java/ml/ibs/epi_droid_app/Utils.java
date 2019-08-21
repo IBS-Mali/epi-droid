@@ -85,24 +85,26 @@ public class Utils extends AppCompatActivity {
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
         }
     }
-    protected static float floatFromField(EditText editText) {
-        return floatFromField(editText, -1);
-    }
-    protected static float floatFromField(EditText editText, int fallback) {
-        String text = stringFromField(editText);
-        if (text.length() > 0) {
-            return Float.parseFloat(text);
-        }
-        return fallback;
-    }
-    protected static String stringFromField(EditText editText) {
-        return editText.getText().toString().trim();
-    }
+//    protected static float floatFromField(EditText editText) {
+//        return floatFromField(editText, -1);
+//    }
+//    protected static float floatFromField(EditText editText, int fallback) {
+//        String text = stringFromField(editText);
+//        if (text.length() > 0) {
+//            return Float.parseFloat(text);
+//        }
+//        return fallback;
+//    }
+//    protected static String stringFromField(EditText editText) {
+//        return editText.getText().toString().trim();
+//    }
     protected static String stringFromSpinner(Spinner spinner) {
         return spinner.getSelectedItem().toString();
-    }    protected static String stringFromSpinner(Spinner spinner, ArrayList codeList) {
-        return codeList.get(spinner.getSelectedItemPosition()).toString();
     }
+//
+//    protected static String stringFromSpinner(Spinner spinner, ArrayList codeList) {
+//        return codeList.get(spinner.getSelectedItemPosition()).toString();
+//    }
     public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
@@ -111,55 +113,6 @@ public class Utils extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
         return calendar.getTime();
-    }
-
-//
-//    public static ArrayList buildArray(String jkey) {
-//
-//        ArrayList spinnerArray = new ArrayList();
-//        ArrayList spinnerArrayCode = new ArrayList();
-//        ArrayList arrayList = new ArrayList();
-//        try {
-//            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
-//            JSONArray arrayKey = jsonObject.getJSONArray(jkey);
-//
-////            for(int i=0; i<arrayKey.length(); i++) {
-////                JSONObject jb = (JSONObject) arrayKey.get(i);
-////                Log.i(TAG, jb.keys());
-////                String name = jb.getString("name");
-////                String code = jb.getString("code");
-////                    spinnerArray.add(new StringWithTag(name, code));
-////                    spinnerArrayCode.add(code);
-//
-////            }
-//            arrayList.add(spinnerArray);
-//            arrayList.add(spinnerArrayCode);
-//        } catch (JSONException e) {
-//            Log.d(TAG, e.toString());
-//        }
-//        return arrayList;
-//    }
-
-
-
-    private static class StringWithTag {
-        public String string;
-        public Object tag;
-
-        public StringWithTag(String string, Object tag) {
-            this.string = string;
-            this.tag = tag;
-        }
-
-        public String getWithTag(Object tag) {
-            return this.string;
-
-        }
-
-        @Override
-        public String toString() {
-            return string;
-        }
     }
 
     public String loadJSONFromAsset() {

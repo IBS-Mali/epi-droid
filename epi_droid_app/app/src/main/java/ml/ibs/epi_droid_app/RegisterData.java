@@ -29,21 +29,26 @@ public class RegisterData extends BaseData {
     String secousses_anormaux_incontrolables = "";
     String apparition_brutale = "";
     String personne_etait_epileptique = "";
-    Boolean sujet_epileptique = false;
-    Date age_debut_epilepsie = null;
-    Boolean crise_2_dernieres_annees = false;
+    int sujet_epileptique = 0;
+    int annee_debut_epilepsie = -1;
+    int crise_2_dernieres_annees = -1;
     String crises_generalisee = "";
     String crises_partielles = "";
     String nbCrises_epilepsie = "";
-    String nb_crises_epilepsie_d = "";
-    String nb_crises_epilepsie_m = "";
-    String nb_crises_epilepsie_y = "";
-    String prise_medicaments_moderne = "";
-    String prise_antiepileptiques_modernes = "";
-    String prise_medicaments_traditionnel = "";
-    String antecedents_familiaux = "";
-    Boolean autres_antecedents_nfami = false;
+    int nb_crises_epilepsie_d = -1;
+    int nb_crises_epilepsie_m = -1;
+    int nb_crises_epilepsie_y = -1;
+    String prise_medicaments_modernes = "";
+    String anti_epilepique_moderne = "";
+    String prise_medicaments_traditionnels = "";
+    int antecedents_familiaux = -1;
+    int antecedents_neurologique = -1;
     String quels_antecedents_neurologiques_familiaux = "";
+    int neuropaludisme = -1;
+    int meningite = -1;
+    int encephalite = -1;
+    int accouchement_d = -1;
+    int avc = -1;
     Boolean isSend = false;
     Boolean isComplet = false;
 
@@ -67,83 +72,6 @@ public class RegisterData extends BaseData {
         return report;
     }
 
-//    public RegisterData(
-//            Date register_date,
-//            String village,
-//            String nom,
-//            String prenom,
-//            Float poids,
-//            Boolean repondant_patient,
-//            Date ddn,
-//            String sexe,
-//            String ethnie,
-//            String etat_civil_patient,
-//            String niveau_scolaire,
-//            String profession_principale,
-//            String coordonnees_gps,
-//            Boolean perte_connaissance,
-//            Boolean perte_urine,
-//            Boolean emission_bave,
-//            String absence_contact,
-//            String secousses_anormaux_incontrolables,
-//            String apparition_brutale,
-//            String personne_etait_epileptique,
-//            Boolean sujet_epileptique,
-//            Date age_debut_epilepsie,
-//            Boolean crise_2_dernieres_annees,
-//            String crises_generalisee,
-//            String crises_partielles,
-//            String nbCrises_epilepsie,
-//            String nb_crises_epilepsie_d,
-//            String nb_crises_epilepsie_m,
-//            String nb_crises_epilepsie_y,
-//            String prise_medicaments_moderne,
-//            String prise_antiepileptiques_modernes,
-//            String prise_medicaments_traditionnel,
-//            String antecedents_familiaux,
-//            Boolean autres_antecedents_nfami,
-//            String quels_antecedents_neurologiques_familiaux,
-//            Boolean isSend,
-//            Boolean isComplet
-//            ) {
-//        this.register_date = register_date;
-//        this.village = village;
-//        this.nom = nom;
-//        this.prenom = prenom;
-//        this.poids = poids;
-//        this.repondant_patient = repondant_patient;
-//        this.ddn = ddn;
-//        this.Sexe = Sexe;
-//        this.ethnie = ethnie;
-//        this.etat_civil_patient = etat_civil_patient;
-//        this.niveau_scolaire = niveau_scolaire;
-//        this.profession_principale = profession_principale;
-//        this.coordonnees_gps = coordonnees_gps;
-//        this.perte_connaissance = perte_connaissance;
-//        this.perte_urine = perte_urine;
-//        this.emission_bave = emission_bave;
-//        this.absence_contact = absence_contact;
-//        this.secousses_anormaux_incontrolables = secousses_anormaux_incontrolables;
-//        this.apparition_brutale = apparition_brutale;
-//        this.personne_etait_epileptique = personne_etait_epileptique;
-//        this.sujet_epileptique = sujet_epileptique;
-//        this.age_debut_epilepsie = age_debut_epilepsie;
-//        this.crise_2_dernieres_annees = crise_2_dernieres_annees;
-//        this.crises_generalisee = crises_generalisee;
-//        this.crises_partielles = crises_partielles;
-//        this.nbCrises_epilepsie = nbCrises_epilepsie;
-//        this.nb_crises_epilepsie_d = nb_crises_epilepsie_d;
-//        this.nb_crises_epilepsie_m = nb_crises_epilepsie_m;
-//        this.nb_crises_epilepsie_y = nb_crises_epilepsie_y;
-//        this.prise_medicaments_moderne = prise_medicaments_moderne;
-//        this.prise_antiepileptiques_modernes = prise_antiepileptiques_modernes;
-//        this.prise_medicaments_traditionnel = prise_medicaments_traditionnel;
-//        this.antecedents_familiaux = antecedents_familiaux;
-//        this.autres_antecedents_nfami = autres_antecedents_nfami;
-//        this.quels_antecedents_neurologiques_familiaux = quels_antecedents_neurologiques_familiaux;
-//        this.isSend = isSend;
-//        this.isComplet = isComplet;
-//    }
 
     public String buildSMSText() {
         return "reg" + Constants.sepaData +
@@ -166,7 +94,7 @@ public class RegisterData extends BaseData {
                 this.apparition_brutale  + Constants.sepaData +
                 this.personne_etait_epileptique  + Constants.sepaData +
                 this.sujet_epileptique  + Constants.sepaData +
-                this.age_debut_epilepsie  + Constants.sepaData +
+                this.annee_debut_epilepsie  + Constants.sepaData +
                 this.crise_2_dernieres_annees  + Constants.sepaData +
                 this.crises_generalisee  + Constants.sepaData +
                 this.crises_partielles  + Constants.sepaData +
@@ -174,14 +102,16 @@ public class RegisterData extends BaseData {
                 this.nb_crises_epilepsie_d  + Constants.sepaData +
                 this.nb_crises_epilepsie_m  + Constants.sepaData +
                 this.nb_crises_epilepsie_y  + Constants.sepaData +
-                this.prise_medicaments_moderne  + Constants.sepaData +
-                this.prise_antiepileptiques_modernes  + Constants.sepaData +
-                this.prise_medicaments_traditionnel  + Constants.sepaData +
+                this.prise_medicaments_modernes  + Constants.sepaData +
+                this.prise_medicaments_traditionnels  + Constants.sepaData +
                 this.antecedents_familiaux  + Constants.sepaData +
-                this.autres_antecedents_nfami  + Constants.sepaData +
-                this.quels_antecedents_neurologiques_familiaux  + Constants.sepaData +
-                this.isSend  + Constants.sepaData +
-                this.isComplet  + Constants.sepaData;
+                this.antecedents_neurologique  + Constants.sepaData +
+                this.quels_antecedents_neurologiques_familiaux + Constants.sepaData +
+                this.neuropaludisme + Constants.sepaData +
+                this.meningite + Constants.sepaData +
+                this.encephalite + Constants.sepaData +
+                this.accouchement_d + Constants.sepaData +
+                this.avc;
 
     }
 }

@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -116,6 +117,19 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
         errorDialog.show();
         // update color of popup to show it's an error.
         Popups.updatePopupForStatus(errorDialog, Constants.SMS_ERROR);
+    }
+
+    public int getIntCheckBox(CheckBox element){
+        if (element.isChecked()){
+            return 1;
+        }
+        return 0;
+    }
+
+    protected void setCheckOnBox(CheckBox checkBox, int value) {
+        if (value == 1){
+            checkBox.setChecked(true);
+        }
     }
 
     /* General checking methods */
@@ -292,6 +306,19 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
         return editText.getText().toString().trim();
     }
 
+    protected static String stringFromSpinner(Spinner spinner, ArrayList codeList) {
+        return stringFromSpinner(spinner, codeList, "");
+    }
+    protected static String stringFromSpinner(Spinner spinner, ArrayList codeList, String fallback) {
+
+        try {
+            return codeList.get(spinner.getSelectedItemPosition()).toString();
+        } catch (Exception e){
+            Log.d(TAG, e.toString());
+        }
+        return fallback;
+    }
+
     protected int integerFromField(EditText editText) {
         return integerFromField(editText, -1);
     }
@@ -318,14 +345,10 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
         return fallback;
     }
     protected void setTextOnField(EditText editText, Object value) {
-        String default_str = "";
-        String value_str;
-        try {
-            value_str = String.valueOf(value);
-        } catch (Exception e) {
-            value_str = default_str;
+        String value_str = value.toString();
+        if (value_str.equals("-1")){
+            value_str = "";
         }
-        //Log.d(TAG, value_str);
         editText.setText(value_str);
     }
 

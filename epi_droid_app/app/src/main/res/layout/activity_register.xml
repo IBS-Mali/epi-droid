@@ -35,7 +35,6 @@
                 android:id="@+id/registerDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
                 android:calendarViewShown="false" />
         </LinearLayout>
 
@@ -58,17 +57,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/repondantOUI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="OUI"
-                    android:text="" />
-
-                <RadioButton
                     android:id="@+id/repondantNon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Non"
+                    android:text="" />
+                <RadioButton
+                    android:id="@+id/repondantOUI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="OUI"
                     android:text="" />
             </RadioGroup>
 
@@ -220,202 +218,239 @@
             style="@style/titleLabel"
             android:text="Sujet épileptique" />
         <RadioGroup
+            android:id="@+id/sujetEpileptiqueG"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OUI" />
-
-            <RadioButton
+                android:id="@+id/sujetEpilepNon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NON" />
+                android:text="NON"
+                android:onClick="hideVisible"/>
+            <RadioButton
+                android:id="@+id/sujetEpilepOui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUI"
+                android:onClick="hideVisible" />
         </RadioGroup>
         <LinearLayout
+            android:id="@+id/startedYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal" />
-        <TextView
-            style="@style/titleLabel"
-            android:text="Si oui (épileptique):" />
-        <EditText
-            style="@style/editText"
-            android:inputType="number"
-                android:hint="Année de début de l’épilepsie :" />
-
-        <TextView
-            style="@style/titleLabel"
-            android:text="Le patient a-t-il présenté une crise dans les 2 dernières années" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OUI" />
-
-            <RadioButton
+            android:orientation="vertical"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/startYear"
+                style="@style/editText"
+                android:inputType="number"
+                android:hint="Année de début de l’épilepsie :"/>
+            <TextView
+                style="@style/titleLabel"
+                android:text="Le patient a-t-il présenté une crise dans les 2 dernières années" />
+            <RadioGroup
+                android:id="@+id/typeCrisesG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NON" />
-        </RadioGroup>
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/typeCrisesNon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:onClick="hideVisibleCrisesL"
+                    android:text="NON" />
+                <RadioButton
+                    android:id="@+id/typeCrisesOui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:onClick="hideVisibleCrisesL"
+                    android:text="OUI" />
+            </RadioGroup>
 
-        <TextView
-            style="@style/sectionLabel"
-            android:text="Type d’épilepsie"/>
-        <!-- Crises généralisées -->
+            <LinearLayout
+                android:id="@+id/typeCrisesL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    style="@style/sectionLabel"
+                    android:text="Type d’épilepsie"/>
+                <!-- Crises généralisées -->
+                <TextView
+                    style="@style/titleLabel"
+                    android:text="Crises généralisées :" />
+                <Spinner
+                    android:id="@+id/crisesGeneralisee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+                <!-- Crises partielles -->
+                <TextView
+                    style="@style/titleLabel"
+                    android:text=" Crises partielles:" />
+                <Spinner
+                    android:id="@+id/crisesPartielles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+                <TextView
+                    style="@style/titleLabel"
+                    android:text="Combien de crises d’épilepsie?" />
+                <EditText
+                    android:id="@+id/nbPerDay"
+                    style="@style/editText"
+                    android:inputType="number"
+                    android:hint="combien de fois par jour " />
 
-        <TextView
-            style="@style/titleLabel"
-            android:text="Crises généralisées :" />
+                <EditText
+                    android:id="@+id/nbPerMonth"
+                    style="@style/editText"
+                    android:inputType="number"
+                    android:hint="combien de fois par mois" />
 
-        <Spinner
-            android:id="@+id/crisesGeneralisee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-        <!-- Crises partielles -->
-        <TextView
-            style="@style/titleLabel"
-            android:text=" Crises partielles:" />
+                <EditText
+                    android:id="@+id/nbPerYear"
+                    style="@style/editText"
+                    android:inputType="number"
+                    android:hint="combien de fois par an " />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/crisesPartielles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            <TextView
+                style="@style/titleLabel"
+                android:text="Est-ce que vous prenez des médicaments MODERNES contre l’épilepsie?" />
 
-        <TextView
-            style="@style/titleLabel"
-            android:text="Combien de crises d’épilepsie?" />
+            <Spinner
+                android:id="@+id/priseMModerne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
 
-        <EditText
-            style="@style/editText"
-            android:inputType="number"
-            android:hint="combien de fois par jour " />
+            <LinearLayout
+                android:id="@+id/antiEpiModerneLY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    style="@style/titleLabel"
+                    android:text="Si prise d’antiépileptiques modernes, lesquels ?" />
+                <Spinner
+                    android:id="@+id/antiEpiModerne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
 
-        <EditText
-            style="@style/editText"
-            android:inputType="number"
-            android:hint="combien de fois par mois" />
+            <TextView
+                style="@style/titleLabel"
+                android:text="Est-ce que vous prenez des médicaments TRADITIONNELS contre l’épilepsie?" />
 
-        <EditText
-            style="@style/editText"
-            android:inputType="number"
-            android:hint="combien de fois par an " />
+            <Spinner
+                android:id="@+id/priseAntiEpiTraditionnel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
 
-        <TextView
-            style="@style/titleLabel"
-            android:text="Est-ce que vous prenez des médicaments MODERNES contre l’épilepsie?" />
+            <TextView
+                style="@style/titleLabel"
+                android:text="Existe-t-il des antécédents familiaux d'épilepsie ?" />
 
-        <Spinner
-            android:id="@+id/priseMModerne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            style="@style/titleLabel"
-            android:text="Si prise d’antiépileptiques modernes, lesquels ?" />
-
-        <Spinner
-            android:id="@+id/priseAntiEpiModerne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            style="@style/titleLabel"
-            android:text="Est-ce que vous prenez des médicaments TRADITIONNELS contre l’épilepsie?" />
-
-        <Spinner
-            android:id="@+id/priseTraditionnel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            style="@style/titleLabel"
-            android:text="Existe-t-il des antécédents familiaux d'épilepsie ?" />
-
-        <TextView
-            style="@style/titleLabel"
-            android:text="parents, grand- parents, frères, sœurs, enfants, oncles, tantes, cousins, cousines"
-            android:textSize="10dp" />
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
+            <TextView
+                style="@style/titleLabel"
+                android:text="parents, grand- parents, frères, sœurs, enfants, oncles, tantes, cousins, cousines"
+                android:textSize="10dp" />
+            <RadioGroup
+                android:id="@+id/antecedentFlleG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OUI" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/antecedentFlleNon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON" />
+                <RadioButton
+                    android:id="@+id/antecedentFlleOui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI" />
+
+            </RadioGroup>
+
+
+            <TextView
+                style="@style/titleLabel"
+                android:text="Existe-t-il d'autres antécédents neurologiques familiaux ?" />
+            <RadioGroup
+                android:id="@+id/anteNeurologiquesG"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NON" />
-        </RadioGroup>
+                android:orientation="horizontal">
 
+                <RadioButton
+                    android:id="@+id/anteNeurologiqueNon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON"
+                    android:onClick="anteNeurologiques"/>
 
-        <TextView
-            style="@style/titleLabel"
-            android:text="Existe-t-il d'autres antécédents neurologiques familiaux ?" />
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/anteNeurologiqueOui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI "
+                    android:onClick="anteNeurologiques" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/anteNeurologiquesLY"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OUI " />
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    style="@style/titleLabel"
+                    android:text=" Si oui, préciser le ou lesquels ?" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NON" />
-        </RadioGroup>
+                <CheckBox
+                    android:id="@+id/neuropaludisme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Neuropaludisme " />
 
-        <TextView
-            style="@style/titleLabel"
-            android:text=" Si oui, préciser le ou lesquels ?" />
+                <CheckBox
+                    android:id="@+id/meningite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Méningite" />
 
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Neuropaludisme " />
+                <CheckBox
+                    android:id="@+id/encephalite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Encéphalite" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Méningite" />
+                <CheckBox
+                    android:id="@+id/accouchementD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accouchement dystocique" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Encéphalite" />
+                <CheckBox
+                    android:id="@+id/avc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AVC" />
+            </LinearLayout>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accouchement dystocique" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AVC" />
-
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
