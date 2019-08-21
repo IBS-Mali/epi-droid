@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".SuiviActivity">
+    tools:context=".SuiviActivity"
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
         <TextView
             style="@style/titleLabel"
             android:inputType="date"
             android:text="Date visite" />
-
         <DatePicker
             android:id="@+id/dateVisite"
             android:layout_width="match_parent"
@@ -28,83 +28,99 @@
             android:hint="Id patient" />
 
         <TextView
-            android:id="@+id/observation"
             style="@style/titleLabel"
             android:text="Observance" />
 
         <EditText
-            android:id="@+id/nombrePlaquette"
+            android:id="@+id/nbPlaquette"
             style="@style/editText"
-            android:inputType="number"
-            android:hint="Nombre plaquette vide"/>
-
+            android:hint="Nombre plaquette vide"
+            android:inputType="number" />
         <TextView
             android:id="@+id/effeteText"
             style="@style/titleLabel"
             android:text="Effets indésirables ?" />
         <RadioGroup
-            android:id="@+id/effeRadio"
+            android:id="@+id/effetsRadioG"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/effetnOui"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OUI" />
-            <RadioButton
+                android:onClick="hideOrGoneEffets"
                 android:id="@+id/effetNon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NON" />
+            <RadioButton
+                android:onClick="hideOrGoneEffets"
+                android:id="@+id/effetOui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUI" />
         </RadioGroup>
-        <TextView
-            style="@style/titleLabel"
-            android:text="Si oui appelé/SMS"/>
-        <EditText
-            style="@style/editText"
-            android:hint="Les quelles ?" />
+
+        <LinearLayout
+            android:id="@+id/effetsLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                style="@style/titleLabel"
+                android:text="Si oui appelé/SMS"/>
+            <EditText
+                android:id="@+id/lesEffets"
+                style="@style/editText"
+                android:hint="Les quelles ?" />
+        </LinearLayout>
 
         <TextView
             style="@style/titleLabel"
             android:id="@+id/criseeText"
             android:text=" Si crise?" />
         <RadioGroup
-            android:id="@+id/criseRadio"
+            android:id="@+id/criseRadioG"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/buttonOui"
+                android:id="@+id/criseNon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="hideGoneLY"
+                android:text="NON" />
+            <RadioButton
+                android:onClick="hideGoneLY"
+                android:id="@+id/criseOui"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OUI" />
-            <RadioButton
-                android:id="@+id/buttonNon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NON" />
         </RadioGroup>
-        <EditText
-            style="@style/editText"
-            android:id="@+id/frequence"
-            android:inputType="number"
-            android:hint="Fréquence mensuelle des crises"/>
+        <LinearLayout
+            android:id="@+id/frequenceLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <EditText
-            style="@style/editText"
-            android:id="@+id/intensite"
-            android:inputType="number"
-            android:hint="Intensité mensuelle" />
+            <EditText
+                style="@style/editText"
+                android:id="@+id/frequence"
+                android:inputType="number"
+                android:hint="Fréquence mensuelle des crises"/>
+
+            <EditText
+                style="@style/editText"
+                android:id="@+id/intensite"
+                android:inputType="number"
+                android:hint="Intensité mensuelle" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:orientation="horizontal">
 
             <Button

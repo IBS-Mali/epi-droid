@@ -50,28 +50,6 @@ public class RegisterActivity extends CheckedFormActivity {
     private Spinner etatCivilPatientSpinner;
     private Spinner niveauScolaireSpinner;
     private Spinner professionPrincipaleSpinner;
-    private EditText coordonneesGPSField;
-    private EditText perteConnaissanceField;
-    private EditText perteUrineField;
-    private EditText emissionBaveField;
-    private EditText absenceContactField;
-    private EditText secoussesAnormauxIncontrolablesField;
-    private EditText apparitionBrutaleField;
-    private EditText personneEtaitEpileptiqueField;
-    private EditText sujetEpileptiqueField;
-    private EditText ageDebutEpilepsieField;
-    private EditText crise2DernieresAnneesField;
-    private EditText typeEpilepsieField;
-    private EditText nbCrisesEpilepsieField;
-    private EditText priseMedicamentsModerneField;
-    private EditText priseAntiepileptiquesModernesField;
-    private EditText priseMedicamentsTraditiionnelField;
-    private EditText antecedentsFamiliauxField;
-    private EditText autresAntecedentsNeurologiquesFamiliauxField;
-    private EditText quelsAntecedentsNeurologiquesFamiliauxField;
-    private String sexePatient;
-//    private int repondantIsPatient;
-    private Boolean perteConnaissance;
     private Spinner perteConnaissanceSpinner;
     private String villige_code;
     private TextView dateField;
@@ -141,13 +119,13 @@ public class RegisterActivity extends CheckedFormActivity {
         startYearField = findViewById(R.id.startYear);
         saveSubmitButton = findViewById(R.id.saveSubmitButton);
         // setup invalid inputs checks
-        setupInvalidInputChecks();
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // ensure data is OK
                 storeReportData();
+                setupInvalidInputChecks();
             }
         });
 
@@ -156,6 +134,7 @@ public class RegisterActivity extends CheckedFormActivity {
             @Override
             public void onClick(View v) {
             // ensure data is OK
+
             if (!checkInputsAndCoherence()) { return; }
             if (!setupInvalidInputChecks()) { return; }
             storeReportData();
@@ -476,12 +455,6 @@ public class RegisterActivity extends CheckedFormActivity {
         hideVisible(R.id.anteNeurologiquesLY, getIntOnRadioGroup(anteNeurologiquesG));
     }
 
-    public void hideVisible(int id, int selected) {
-        LinearLayout started = findViewById(id);
-        if (selected==1){
-            started.setVisibility(View.VISIBLE);
-        } else {started.setVisibility(View.GONE);}
-    }
 
     private static class StringWithTag {
         public String string;

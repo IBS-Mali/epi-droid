@@ -11,14 +11,16 @@ public class StockData extends BaseData {
     @Ignore
     private static final String TAG = Constants.getLogTag("StockData");
 
-    /*Date register_date = null;
-    String village = "";
-    String nom = "";
-    String prenom = "";
-    Float poids = Float.valueOf(-1);
-    int repondant_patient = -1;
-    Date ddn = null;
-    int sexe = -1;*/
+    Date visite_date = null;
+    String idPatient;
+    String observance;
+    int effets_indesirable;
+    String lesquelles;
+    int crise;
+    String frenquence;
+    String intensite_mensuelle;
+
+
     public StockData() {}
 
 
@@ -39,6 +41,14 @@ public class StockData extends BaseData {
     }
 
     public String buildSMSText() {
-        return "sv" + Constants.sepaData;
+        return "sv" + Constants.sepaData +
+                this.visite_date + Constants.sepaData +
+                this.idPatient + Constants.sepaData +
+                this.observance + Constants.sepaData +
+                this.effets_indesirable + Constants.sepaData +
+                this.lesquelles + Constants.sepaData +
+                this.crise + Constants.sepaData +
+                this.frenquence + Constants.sepaData +
+                this.intensite_mensuelle + Constants.sepaData;
     }
 }

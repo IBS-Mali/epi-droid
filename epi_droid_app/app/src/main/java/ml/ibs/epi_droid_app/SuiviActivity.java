@@ -3,6 +3,7 @@ package ml.ibs.epi_droid_app;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -14,21 +15,16 @@ import android.widget.TextView;
 public class SuiviActivity extends CheckedFormActivity {
     private final static String TAG = Constants.getLogTag("SuiviActivity");
 
+    private DatePicker dateVisiteField;
     private EditText idPatientField;
-    private EditText dateVisiteField;
-    private TextView observationField;
-    private EditText nombrePlaquetteField;
-    private RadioGroup criseRadio;
-    private TextView criseeText;
-    private RadioButton buttonOui;
-    private RadioButton buttonNon;
+    private EditText nbPlaquetteField;
+    private RadioGroup effetsRadioG;
+    private EditText lesEffetsField;
+    private RadioGroup criseRadioG;
     private EditText frequenceField;
     private EditText intensiteField;
     private Button saveButton;
     private Button saveSubmitButton;
-
-
-
 
 
     @Override
@@ -39,25 +35,123 @@ public class SuiviActivity extends CheckedFormActivity {
         setContentView(R.layout.activity_suivi);
         setupSMSReceiver();
         setupUI();
-    }
 
+
+        saveSubmitButton = findViewById(R.id.saveSubmitButton);
+        // setup invalid inputs checks
+        setupInvalidInputChecks();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // ensure data is OK
+                storeReportData();
+            }
+        });
+        // setup invalid inputs checks
+        setupInvalidInputChecks();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // ensure data is OK
+                storeReportData();
+            }
+        });
+
+        final CheckedFormActivity activity = this;
+        saveSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ensure data is OK
+                if (!checkInputsAndCoherence()) { return; }
+                if (!setupInvalidInputChecks()) { return; }
+                storeReportData();
+                // transmit SMS
+                requestPasswordAndTransmitSMS(activity, "EPI",
+                        Constants.SMS_KEYWORD, buildSMSText());
+            }
+        });
+
+        final SuiviData report = SuiviData.get();
+        if (!report.isSend){
+            restoreReportData();
+        }
+
+    }
 
     protected void setupUI() {
         Log.d(TAG, "setupUI SuiviActivity");
-        //idPatientField = findViewById(R.id.idPatient);
-        //dateVisiteField = findViewById(R.id.dateVisite);
-        //observationField= findViewById(R.id.observation);
-        //nombrePlaquetteField= findViewById(R.id.nombrePlaquetteField);
-        //criseRadio= findViewById(R.id.criseRadio);
-        //buttonOuiButton= findViewById(R.id.buttonOui);
-        //buttonNonButton= findViewById(R.id.buttonNon);
-        //frequenceField= findViewById(R.id.frequence);
-        //intensiteField= findViewById(R.id.intensite);
-        //saveButton= findViewById(R.id.saveButton);
-        //saveSubmitButton= findViewById(R.id.saveSubmitButton);
-
+        idPatientField = findViewById(R.id.idPatient);
+        dateVisiteField = findViewById(R.id.dateVisite);
+        nbPlaquetteField = findViewById(R.id.nbPlaquette);
+        effetsRadioG = findViewById(R.id.effetsRadioG);
+        lesEffetsField = findViewById(R.id.lesEffets);
+        criseRadioG = findViewById(R.id.criseRadioG);
+        frequenceField= findViewById(R.id.frequence);
+        intensiteField= findViewById(R.id.intensite);
+        saveButton= findViewById(R.id.saveButton);
+        saveSubmitButton= findViewById(R.id.saveSubmitButton);
 
 
     }
 
+    protected void storeReportData() {
+        Log.d(TAG, "storeData");
+
+        SuiviData report = SuiviData.get();
+        report.updateMetaData();
+        report.visite_date = Utils.getDateFromDatePicker(dateVisiteField);
+        report.idPatient = stringFromField(idPatientField);
+        report.observance = stringFromField(nbPlaquetteField);
+        report.effets_indesirable = getIntOnRadioGroup(effetsRadioG);
+        report.lesquelles = stringFromField(lesEffetsField);
+        report.crise = getIntOnRadioGroup(criseRadioG);
+        report.frenquence = stringFromField(frequenceField);
+        report.intensite = stringFromField(intensiteField);
+        report.safeSave();
+        Utils.toast(this, "Sauvegardé avec succès");
+    }
+    protected void restoreReportData() {
+        Log.d(TAG, "restoreData");
+
+        SuiviData report = SuiviData.get();
+        setDatetoDatePicker(dateVisiteField, report.visite_date);
+        setTextOnField(idPatientField, report.idPatient);
+        setTextOnField(nbPlaquetteField, report.observance);
+        if (report.effets_indesirable==1) {
+            checkOnRadio(effetsRadioG, R.id.effetOui);
+        } else {
+            checkOnRadio(effetsRadioG, R.id.effetNon);
+        }
+        setTextOnField(lesEffetsField, report.lesquelles);
+        if (report.effets_indesirable==1) {
+            checkOnRadio(criseRadioG, R.id.criseOui);
+        } else {
+            checkOnRadio(criseRadioG, R.id.criseNon);
+        }
+        setTextOnField(frequenceField, report.frenquence);
+        setTextOnField(intensiteField, report.intensite);
+    }
+
+    protected String buildSMSText() {
+        SuiviData report = SuiviData.get();
+        return report.buildSMSText();
+    }
+
+    protected boolean setupInvalidInputChecks() {
+        return assertNotEmpty(idPatientField) &&
+                assertNotEmpty(nbPlaquetteField);
+    }
+
+    protected boolean ensureDataCoherence(){return true;}
+
+    public void hideGoneLY(View view) {
+        hideVisible(R.id.frequenceLY, getIntOnRadioGroup(criseRadioG));
+    }
+
+    public void hideOrGoneEffets(View view) {
+        hideVisible(R.id.effetsLY, getIntOnRadioGroup(effetsRadioG));
+
+    }
 }

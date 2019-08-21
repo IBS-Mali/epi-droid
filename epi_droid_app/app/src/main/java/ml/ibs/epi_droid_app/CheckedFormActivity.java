@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -703,4 +704,43 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
         String str = df.format(value);
         return Float.parseFloat(str.replace(',', '.'));
     }
+
+    public void hideVisible(int id, int selected) {
+        LinearLayout started = findViewById(id);
+        if (selected==1){
+            started.setVisibility(View.VISIBLE);
+        } else {started.setVisibility(View.GONE);}
+    }
+//
+//    /* Data Restore Dialog */
+//    public void requestForResumeReport(Activity activity,  Object report) {
+//
+//        Log.d(TAG, "report.id: " + String.valueOf(report.getId()));
+//
+//        if (report.getName() == null) {
+//            // no report data present (only very first time)
+//            Log.d(TAG, "report.name is null. first time");
+//            return;
+//        }
+//        Log.d(TAG, "report.name is not null.");
+//        AlertDialog.Builder questionDialogBuilder = Popups.getDialogBuilder(this,
+//                getString(R.string.resume_report_title),
+//                String.format(getString(R.string.resume_report_body), report.getName()),
+//                false);
+//        questionDialogBuilder.setPositiveButton(R.string.resume_report_ok_label,
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // close the dialog, restore data into fields
+//                        restoreReportData();
+//                    }
+//                });
+//        questionDialogBuilder.setNeutralButton(R.string.resume_report_cancel_label, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                // close the dialog, call reset report data
+//                resetReportData();
+//            }
+//        });
+//        AlertDialog errorDialog = questionDialogBuilder.create();
+//        errorDialog.show();
+//    }
 }

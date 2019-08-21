@@ -11,14 +11,18 @@ public class SuiviData extends BaseData {
     @Ignore
     private static final String TAG = Constants.getLogTag("SuiviData");
 
-    /*Date register_date = null;
-    String village = "";
-    String nom = "";
-    String prenom = "";
-    Float poids = Float.valueOf(-1);
-    int repondant_patient = -1;
-    Date ddn = null;
-    int sexe = -1;*/
+
+    Date visite_date = null;
+    String idPatient = "";
+    String observance = "";
+    int effets_indesirable = -1;
+    String lesquelles = "";
+    int crise = -1;
+    String frenquence = "";
+    String intensite = "";
+    Boolean isSend = false;
+    Boolean isComplet = false;
+
     public SuiviData() {}
 
 
@@ -38,7 +42,20 @@ public class SuiviData extends BaseData {
         return report;
     }
 
+    protected void resetReportData() {
+        SuiviData report = SuiviData.get();
+        report.isComplet = true;
+        report.safeSave();
+    }
     public String buildSMSText() {
-        return "sv" + Constants.sepaData;
+        return "sv" + Constants.sepaData +
+                Utils.dateTostrDate(this.visite_date) + Constants.sepaData +
+                this.idPatient + Constants.sepaData +
+                this.observance + Constants.sepaData +
+                this.effets_indesirable + Constants.sepaData +
+                this.lesquelles + Constants.sepaData +
+                this.crise + Constants.sepaData +
+                this.frenquence + Constants.sepaData +
+                this.intensite;
     }
 }
