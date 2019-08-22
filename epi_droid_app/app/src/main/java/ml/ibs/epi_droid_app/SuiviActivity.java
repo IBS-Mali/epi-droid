@@ -1,5 +1,7 @@
 package ml.ibs.epi_droid_app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -33,10 +35,8 @@ public class SuiviActivity extends CheckedFormActivity {
 
         setTitle(R.string.title_activity_suivi);
         setContentView(R.layout.activity_suivi);
-        setupSMSReceiver();
         setupUI();
-
-
+        setupSMSReceiver();
         saveSubmitButton = findViewById(R.id.saveSubmitButton);
         // setup invalid inputs checks
         setupInvalidInputChecks();
@@ -74,8 +74,8 @@ public class SuiviActivity extends CheckedFormActivity {
         });
 
         final SuiviData report = SuiviData.get();
-        if (!report.isSend){
-            restoreReportData();
+        if (report.isSave){
+            requestForResumeReport(this, "Suivi patient");
         }
 
     }
@@ -109,6 +109,7 @@ public class SuiviActivity extends CheckedFormActivity {
         report.crise = getIntOnRadioGroup(criseRadioG);
         report.frenquence = stringFromField(frequenceField);
         report.intensite = stringFromField(intensiteField);
+        report.isSave = true;
         report.safeSave();
         Utils.toast(this, "Sauvegardé avec succès");
     }
@@ -152,6 +153,6 @@ public class SuiviActivity extends CheckedFormActivity {
 
     public void hideOrGoneEffets(View view) {
         hideVisible(R.id.effetsLY, getIntOnRadioGroup(effetsRadioG));
-
     }
+
 }

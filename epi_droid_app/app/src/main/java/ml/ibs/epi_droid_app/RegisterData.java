@@ -50,7 +50,7 @@ public class RegisterData extends BaseData {
     int accouchement_d = -1;
     int avc = -1;
     Boolean isSend = false;
-    Boolean isComplet = false;
+    Boolean isSave = false;
 
 
     public RegisterData() {}

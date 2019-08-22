@@ -29,7 +29,8 @@
             <TextView
                 style="@style/titleLabel"
                 android:text="Date d'enregistrement"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:imeOptions="actionNext"/>
 
             <DatePicker
                 android:id="@+id/registerDate"
@@ -246,7 +247,8 @@
                 android:id="@+id/startYear"
                 style="@style/editText"
                 android:inputType="number"
-                android:hint="Année de début de l’épilepsie :"/>
+                android:hint="Année de début de l’épilepsie :"
+                android:imeOptions="actionNext"/>
             <TextView
                 style="@style/titleLabel"
                 android:text="Le patient a-t-il présenté une crise dans les 2 dernières années" />
@@ -311,13 +313,15 @@
                     android:id="@+id/nbPerMonth"
                     style="@style/editText"
                     android:inputType="number"
-                    android:hint="combien de fois par mois" />
+                    android:hint="combien de fois par mois"
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:id="@+id/nbPerYear"
                     style="@style/editText"
                     android:inputType="number"
-                    android:hint="combien de fois par an " />
+                    android:hint="combien de fois par an "
+                    android:imeOptions="actionNext"/>
             </LinearLayout>
 
             <TextView
@@ -380,10 +384,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OUI" />
-
             </RadioGroup>
-
-
             <TextView
                 style="@style/titleLabel"
                 android:text="Existe-t-il d'autres antécédents neurologiques familiaux ?" />

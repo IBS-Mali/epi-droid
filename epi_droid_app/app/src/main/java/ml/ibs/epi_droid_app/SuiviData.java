@@ -21,7 +21,7 @@ public class SuiviData extends BaseData {
     String frenquence = "";
     String intensite = "";
     Boolean isSend = false;
-    Boolean isComplet = false;
+    Boolean isSave = false;
 
     public SuiviData() {}
 
@@ -44,7 +44,16 @@ public class SuiviData extends BaseData {
 
     protected void resetReportData() {
         SuiviData report = SuiviData.get();
-        report.isComplet = true;
+        report.visite_date = null;
+        report.idPatient = "";
+        report.observance = "";
+        report.effets_indesirable = -1;
+        report.lesquelles = "";
+        report.crise = -1;
+        report.frenquence = "";
+        report.intensite = "";
+        report.isSend = false;
+        report.isSave = false;
         report.safeSave();
     }
     public String buildSMSText() {

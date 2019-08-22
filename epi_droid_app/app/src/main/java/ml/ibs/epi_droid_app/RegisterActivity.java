@@ -102,8 +102,8 @@ public class RegisterActivity extends CheckedFormActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_activity_register);
         setContentView(R.layout.activity_register);
-        setupSMSReceiver();
         setupUI();
+        setupSMSReceiver();
     }
 
     protected void setupUI() {
@@ -306,8 +306,8 @@ public class RegisterActivity extends CheckedFormActivity {
         accouchementDChecBox = findViewById(R.id.accouchementD);
         avcChecBox = findViewById(R.id.avc);
         final RegisterData report = RegisterData.get();
-        if (!report.isSend){
-            restoreReportData();
+        if (report.isSave){
+            requestForResumeReport(this, "Enregistrement patient");
         }
     }
 
@@ -353,6 +353,7 @@ public class RegisterActivity extends CheckedFormActivity {
         report.encephalite = getIntCheckBox(encephaliteChecBox);
         report.accouchement_d = getIntCheckBox(accouchementDChecBox);
         report.avc = getIntCheckBox(avcChecBox);
+        report.isSave = true;
         report.safeSave();
 
         Utils.toast(RegisterActivity.this, "Sauvegardé avec succès");
@@ -454,7 +455,6 @@ public class RegisterActivity extends CheckedFormActivity {
     public void anteNeurologiques(View view) {
         hideVisible(R.id.anteNeurologiquesLY, getIntOnRadioGroup(anteNeurologiquesG));
     }
-
 
     private static class StringWithTag {
         public String string;

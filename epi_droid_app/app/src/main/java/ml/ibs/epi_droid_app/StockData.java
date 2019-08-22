@@ -11,15 +11,21 @@ public class StockData extends BaseData {
     @Ignore
     private static final String TAG = Constants.getLogTag("StockData");
 
-    Date visite_date = null;
-    String idPatient;
-    String observance;
-    int effets_indesirable;
-    String lesquelles;
-    int crise;
-    String frenquence;
-    String intensite_mensuelle;
-
+    Date send_date = null;
+    int pheno_quantite_recue  = -1;
+    int pheno_quantite_utilisee = -1;
+    int pheno_quantite_perdue  = -1;
+    int pheno_quantite_restante = -1;
+    int carba_quantite_recue  = -1;
+    int carba_quantite_utilisee = -1;
+    int carba_quantite_perdue  = -1;
+    int carba_quantite_restante = -1;
+    int sodi_quantite_recue  = -1;
+    int sodi_quantite_utilisee = -1;
+    int sodi_quantite_perdue  = -1;
+    int sodi_quantite_restante = -1;
+    Boolean isSend = false;
+    Boolean isSave = false;
 
     public StockData() {}
 
@@ -41,14 +47,18 @@ public class StockData extends BaseData {
     }
 
     public String buildSMSText() {
-        return "sv" + Constants.sepaData +
-                this.visite_date + Constants.sepaData +
-                this.idPatient + Constants.sepaData +
-                this.observance + Constants.sepaData +
-                this.effets_indesirable + Constants.sepaData +
-                this.lesquelles + Constants.sepaData +
-                this.crise + Constants.sepaData +
-                this.frenquence + Constants.sepaData +
-                this.intensite_mensuelle + Constants.sepaData;
+        return "st" + Constants.sepaData +
+                this.pheno_quantite_recue  + Constants.sepaData +
+                this.pheno_quantite_utilisee + Constants.sepaData +
+                this.pheno_quantite_perdue  + Constants.sepaData +
+                this.pheno_quantite_restante + Constants.sepaData +
+                this.carba_quantite_recue  + Constants.sepaData +
+                this.carba_quantite_utilisee + Constants.sepaData +
+                this.carba_quantite_perdue  + Constants.sepaData +
+                this.carba_quantite_restante + Constants.sepaData +
+                this.sodi_quantite_recue  + Constants.sepaData +
+                this.sodi_quantite_utilisee + Constants.sepaData +
+                this.sodi_quantite_perdue  + Constants.sepaData +
+                this.sodi_quantite_restante;
     }
 }

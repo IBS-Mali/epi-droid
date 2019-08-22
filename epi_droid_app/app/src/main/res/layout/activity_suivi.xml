@@ -115,7 +115,8 @@
                 style="@style/editText"
                 android:id="@+id/intensite"
                 android:inputType="number"
-                android:hint="Intensité mensuelle" />
+                android:hint="Intensité mensuelle"
+                android:imeOptions="actionDone"/>
         </LinearLayout>
 
         <LinearLayout

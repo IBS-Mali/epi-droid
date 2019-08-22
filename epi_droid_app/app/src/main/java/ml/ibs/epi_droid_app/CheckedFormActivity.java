@@ -381,7 +381,7 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
                                                  final String smsKeyword,
                                                  final String smsData) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String defaultUsername = sharedPrefs.getString("username", "");
+        String defaultUsername = sharedPrefs.getString("userName", "");
         AlertDialog.Builder identDialogBuilder = Popups.getDialogBuilder(
                 activity, getString(R.string.password_dialog_title),
                 String.format(getString(R.string.password_dialog_text), reportName),
@@ -711,36 +711,29 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
             started.setVisibility(View.VISIBLE);
         } else {started.setVisibility(View.GONE);}
     }
-//
-//    /* Data Restore Dialog */
-//    public void requestForResumeReport(Activity activity,  Object report) {
-//
-//        Log.d(TAG, "report.id: " + String.valueOf(report.getId()));
-//
-//        if (report.getName() == null) {
-//            // no report data present (only very first time)
-//            Log.d(TAG, "report.name is null. first time");
-//            return;
-//        }
-//        Log.d(TAG, "report.name is not null.");
-//        AlertDialog.Builder questionDialogBuilder = Popups.getDialogBuilder(this,
-//                getString(R.string.resume_report_title),
-//                String.format(getString(R.string.resume_report_body), report.getName()),
-//                false);
-//        questionDialogBuilder.setPositiveButton(R.string.resume_report_ok_label,
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // close the dialog, restore data into fields
-//                        restoreReportData();
-//                    }
-//                });
-//        questionDialogBuilder.setNeutralButton(R.string.resume_report_cancel_label, new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                // close the dialog, call reset report data
-//                resetReportData();
-//            }
-//        });
-//        AlertDialog errorDialog = questionDialogBuilder.create();
-//        errorDialog.show();
-//    }
+
+    /* Data Restore Dialog */
+    public void requestForResumeReport(Activity activity, String title) {
+
+        Log.d(TAG, "report.name is not null.");
+        AlertDialog.Builder questionDialogBuilder = Popups.getDialogBuilder(this,
+                getString(R.string.resume_report_title),
+                String.format(getString(R.string.resume_report_body), title),
+                false);
+        questionDialogBuilder.setPositiveButton(R.string.resume_report_ok_label,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // close the dialog, restore data into fields
+                        restoreReportData();
+                    }
+                });
+        questionDialogBuilder.setNeutralButton(R.string.resume_report_cancel_label, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close the dialog, call reset report data
+                resetReportData();
+            }
+        });
+        AlertDialog errorDialog = questionDialogBuilder.create();
+        errorDialog.show();
+    }
 }

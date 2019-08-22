@@ -12,7 +12,7 @@ import android.widget.Button;
 //import java.util.prefs.Preferences;
 
 
-public class EPIHome extends Activity {
+public class EPIHome extends CheckedFormActivity {
 
     private final static String TAG = Constants.getLogTag("Home");
 
@@ -59,6 +59,8 @@ public class EPIHome extends Activity {
                 startActivity(intent);
             }
         });
+
+        setupSMSReceiver();
     }
 
     @Override

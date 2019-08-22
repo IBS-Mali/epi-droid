@@ -17,16 +17,19 @@
         <item name="android:layout_margin">5dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:editable">true</item>
+        <item name="android:imeOptions">actionNext</item>
     </style>
 
     <style name="editInteger">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ems">10</item>
+        <item name="android:textSize">10dp</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:editable">true</item>
         <item name="android:inputType">number</item>
+        <item name="android:imeOptions">actionNext</item>
     </style>
 
     <style name="menuButton">
