@@ -19,7 +19,7 @@ public class Constants {
     public static final int SMS_ERROR = 2;
     public static final int SMS_UNKNOWN = 3;
 
-    public static final String server_number = "76433890";
+    public static final String server_number = "99566792";
     public static final String server_url = "http://epitraitement.ml";
     public static final String resource_url = "%1$s/resources";
     public static final String SPACER = " ";
@@ -42,6 +42,10 @@ public class Constants {
 
     public static final String databaseName = "epidata.db";
     public static final char sepaData = ' ';
+
+    public static  final String keyRegister = "rg";
+    public static  final String keySuivi = "sv";
+    public static  final String keyStock = "sk";
 
 
     public static final String getLogTag(String activity) {

@@ -262,14 +262,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
-                    android:onClick="hideVisibleCrisesL"
                     android:text="NON" />
                 <RadioButton
                     android:id="@+id/typeCrisesOui"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
-                    android:onClick="hideVisibleCrisesL"
                     android:text="OUI" />
             </RadioGroup>
 
@@ -277,8 +275,7 @@
                 android:id="@+id/typeCrisesL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
                 <TextView
                     style="@style/sectionLabel"
                     android:text="Type d’épilepsie"/>

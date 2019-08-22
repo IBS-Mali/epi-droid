@@ -74,7 +74,7 @@ public class RegisterData extends BaseData {
 
 
     public String buildSMSText() {
-        return "reg" + Constants.sepaData +
+        return  Constants.keyRegister + Constants.sepaData +
                 Utils.dateTostrDate(this.register_date)  + Constants.sepaData +
                 this.village  + Constants.sepaData +
                 this.nom  + Constants.sepaData +

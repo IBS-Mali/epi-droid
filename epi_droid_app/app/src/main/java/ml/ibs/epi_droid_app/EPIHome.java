@@ -1,8 +1,14 @@
 package ml.ibs.epi_droid_app;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,6 +67,40 @@ public class EPIHome extends CheckedFormActivity {
         });
 
         setupSMSReceiver();
+
+        final Activity activity = this;
+
+        int permissionSendSMSCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS);
+        int permissionStorageCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permissionSendSMSCheck < 0 || permissionStorageCheck < 0) {
+
+            AlertDialog.Builder prefCheckBuilder = new AlertDialog.Builder(this);
+            prefCheckBuilder.setCancelable(false);
+            prefCheckBuilder.setTitle(
+                    getString(R.string.pnso_get_permission_title));
+            prefCheckBuilder.setMessage(
+                    getString(R.string.pnso_get_permission_body));
+            prefCheckBuilder.setIcon(R.mipmap.ic_launcher);
+            prefCheckBuilder.setPositiveButton(R.string.go_to_application_settings,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // close the dialog (auto)
+                            finish();
+                            // go to package
+
+                            Intent intent = new Intent();
+                            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                            intent.setData(uri);
+                            startActivity(intent);
+                        }
+                    });
+            AlertDialog prefCheckDialog = prefCheckBuilder.create();
+            prefCheckDialog.show();
+        }
     }
 
     @Override

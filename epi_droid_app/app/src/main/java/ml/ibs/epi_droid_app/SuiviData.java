@@ -57,7 +57,7 @@ public class SuiviData extends BaseData {
         report.safeSave();
     }
     public String buildSMSText() {
-        return "sv" + Constants.sepaData +
+        return  Constants.keySuivi + Constants.sepaData +
                 Utils.dateTostrDate(this.visite_date) + Constants.sepaData +
                 this.idPatient + Constants.sepaData +
                 this.observance + Constants.sepaData +

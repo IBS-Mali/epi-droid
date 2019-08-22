@@ -77,4 +77,8 @@
     <string name="title_activity_suivi">Formulaire de Suivi (mensuel)</string>
     <string name="title_activity_register">Formulaire d\'enregistrement</string>
 
+    <string name="go_to_application_settings">Accéder aux informations de l\'appli.</string>
+    <string name="pnso_get_permission_title">Demande d\'autorisation.</string>
+    <string name="pnso_get_permission_body">L\'application EPI-droid a besoin d\'autorisations pour effectuer certaines actions (envoyer des SMS).
+        \nAllez dans les informations de l\'appli, appuyez sur autorisations et activez les tous.</string>
 </resources>

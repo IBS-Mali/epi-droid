@@ -47,7 +47,7 @@ public class StockData extends BaseData {
     }
 
     public String buildSMSText() {
-        return "st" + Constants.sepaData +
+        return  Constants.keyStock + Constants.sepaData +
                 this.pheno_quantite_recue  + Constants.sepaData +
                 this.pheno_quantite_utilisee + Constants.sepaData +
                 this.pheno_quantite_perdue  + Constants.sepaData +
