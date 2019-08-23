@@ -29,7 +29,7 @@ public class RegisterData extends BaseData {
     String secousses_anormaux_incontrolables = "";
     String apparition_brutale = "";
     String personne_etait_epileptique = "";
-    int sujet_epileptique = 0;
+    int sujet_epileptique = -1;
     int annee_debut_epilepsie = -1;
     int crise_2_dernieres_annees = -1;
     String crises_generalisee = "";

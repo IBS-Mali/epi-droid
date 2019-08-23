@@ -415,13 +415,13 @@
                 android:visibility="gone">
                 <TextView
                     style="@style/titleLabel"
-                    android:text=" Si oui, préciser le ou lesquels ?" />
+                    android:text="Si oui, préciser le ou lesquels ?" />
 
                 <CheckBox
                     android:id="@+id/neuropaludisme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Neuropaludisme " />
+                    android:text="Neuropaludisme" />
 
                 <CheckBox
                     android:id="@+id/meningite"
