@@ -49,7 +49,7 @@ public class Constants {
 
 
     public static final String getLogTag(String activity) {
-    	return String.format("EPI-Log-%s", activity);
+        return String.format("EPI-Log-%s", activity);
     }
 
     public static int getSMSStatus(String message) {

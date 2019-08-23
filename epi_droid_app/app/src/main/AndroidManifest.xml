@@ -26,7 +26,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="epi.db" />
+            android:value="epidata.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
