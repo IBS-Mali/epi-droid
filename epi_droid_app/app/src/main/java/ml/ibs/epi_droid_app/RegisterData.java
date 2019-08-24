@@ -23,7 +23,7 @@ public class RegisterData extends BaseData {
     String etat_civil_patient = "";
     String niveau_scolaire = "";
     String profession_principale = "";
-    String coordonnees_gps = "";
+    String coordonnees_gps = "0,0";
     String perte_connaissance = "";
     String absence_contact = "";
     String secousses_anormaux_incontrolables = "";
@@ -34,7 +34,6 @@ public class RegisterData extends BaseData {
     int crise_2_dernieres_annees = -1;
     String crises_generalisee = "";
     String crises_partielles = "";
-    String nbCrises_epilepsie = "";
     int nb_crises_epilepsie_d = -1;
     int nb_crises_epilepsie_m = -1;
     int nb_crises_epilepsie_y = -1;
@@ -43,7 +42,6 @@ public class RegisterData extends BaseData {
     String prise_medicaments_traditionnels = "";
     int antecedents_familiaux = -1;
     int antecedents_neurologique = -1;
-    String quels_antecedents_neurologiques_familiaux = "";
     int neuropaludisme = -1;
     int meningite = -1;
     int encephalite = -1;
@@ -98,20 +96,18 @@ public class RegisterData extends BaseData {
                 this.crise_2_dernieres_annees  + Constants.sepaData +
                 this.crises_generalisee  + Constants.sepaData +
                 this.crises_partielles  + Constants.sepaData +
-                this.nbCrises_epilepsie  + Constants.sepaData +
                 this.nb_crises_epilepsie_d  + Constants.sepaData +
                 this.nb_crises_epilepsie_m  + Constants.sepaData +
                 this.nb_crises_epilepsie_y  + Constants.sepaData +
                 this.prise_medicaments_modernes  + Constants.sepaData +
+                this.anti_epilepique_moderne  + Constants.sepaData +
                 this.prise_medicaments_traditionnels  + Constants.sepaData +
                 this.antecedents_familiaux  + Constants.sepaData +
                 this.antecedents_neurologique  + Constants.sepaData +
-                this.quels_antecedents_neurologiques_familiaux + Constants.sepaData +
                 this.neuropaludisme + Constants.sepaData +
                 this.meningite + Constants.sepaData +
                 this.encephalite + Constants.sepaData +
                 this.accouchement_d + Constants.sepaData +
                 this.avc;
-
     }
 }

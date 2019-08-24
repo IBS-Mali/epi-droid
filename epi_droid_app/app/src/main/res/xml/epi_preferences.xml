@@ -16,7 +16,7 @@
             android:key="serverPhoneNumber"
             android:inputType="number"
             android:ems="10"
-            android:defaultValue="76433890"
+            android:defaultValue="99567992"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditTextPreference
@@ -30,7 +30,6 @@
             android:title="@string/pref_pass_word"
             android:summary="@string/pref_pass_word_summary"
             android:key="passWord"
-            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </PreferenceCategory>

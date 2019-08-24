@@ -162,6 +162,12 @@
                 style="@style/titleLabel"
                 android:text="Coordonnees GPS" />
 
+            <Button
+                android:id="@+id/btnShowLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prendre le GPS"/>
+
             <TextView
                 style="@style/sectionLabel"
                 android:text="Question pour identification de cas suspect d’épilepsie?"

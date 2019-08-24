@@ -304,7 +304,7 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
 
     /* Input CleanUp/convertions */
     protected String stringFromField(EditText editText) {
-        return editText.getText().toString().trim();
+        return editText.getText().toString().trim().replace(" ", "_");
     }
 
     protected static String stringFromSpinner(Spinner spinner, ArrayList codeList) {
@@ -347,10 +347,10 @@ public class CheckedFormActivity extends Activity implements SMSUpdater {
     }
     protected void setTextOnField(EditText editText, Object value) {
         String value_str = value.toString();
-        if (value_str.equals("-1")){
+        if (value_str.equals("-1") || value_str.equals("-1.0")){
             value_str = "";
         }
-        editText.setText(value_str);
+        editText.setText(value_str.replace("_", " "));
     }
 
     public static void setDatetoDatePicker(DatePicker datePicker, Date date){

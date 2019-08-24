@@ -34,8 +34,7 @@
         <EditText
             android:id="@+id/nbPlaquette"
             style="@style/editText"
-            android:hint="Nombre plaquette vide"
-            android:inputType="number" />
+            android:hint="Nombre plaquette vide" />
         <TextView
             android:id="@+id/effeteText"
             style="@style/titleLabel"

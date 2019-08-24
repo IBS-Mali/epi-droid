@@ -38,7 +38,7 @@ public class Constants {
     public static final String SMS_CHANGE_PASSWRD = "passwd %1$s %2$s %3$s";
 
     public static final int RESULT_SETTINGS = 1;
-    public static final String DATE_SPACER = "/";
+    public static final String DATE_SPACER = "-";
 
     public static final String databaseName = "epidata.db";
     public static final char sepaData = ' ';

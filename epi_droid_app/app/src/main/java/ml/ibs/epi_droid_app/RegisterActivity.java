@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ import java.util.Set;
 public class RegisterActivity extends CheckedFormActivity {
     private final static String TAG = Constants.getLogTag("RegisterActivity");
 
-
+    GPSTracker gps;
     private Button saveSubmitButton;
     private Button saveButton;
     private EditText poidsField;
@@ -95,6 +96,8 @@ public class RegisterActivity extends CheckedFormActivity {
     private CheckBox accouchementDChecBox;
     private CheckBox idencephalite;
     private CheckBox avcChecBox;
+    private Button btnShowLocation;
+    private String coordonnees_gps;
 
 
     @Override
@@ -118,6 +121,34 @@ public class RegisterActivity extends CheckedFormActivity {
         sexeRGroup = findViewById(R.id.sexeRadioG);
         startYearField = findViewById(R.id.startYear);
         saveSubmitButton = findViewById(R.id.saveSubmitButton);
+
+
+        btnShowLocation = (Button) findViewById(R.id.btnShowLocation);
+
+        // Show location button click event
+        btnShowLocation.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // Create class object
+                gps = new GPSTracker(RegisterActivity.this);
+
+                // Check if GPS enabled
+                if(gps.canGetLocation()) {
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+                    coordonnees_gps = latitude + "," + longitude;
+                    btnShowLocation.setText("GPS (" + coordonnees_gps + ")");
+                    // \n is for new line
+                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                } else {
+                    // Can't get location.
+                    // GPS or network is not enabled.
+                    // Ask user to enable GPS/network in settings.
+                    gps.showSettingsAlert();
+                }
+            }
+        });
         // setup invalid inputs checks
         saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -329,7 +360,7 @@ public class RegisterActivity extends CheckedFormActivity {
         report.etat_civil_patient = stringFromSpinner(etatCivilPatientSpinner, etatCivilCode);
         report.niveau_scolaire = stringFromSpinner(niveauScolaireSpinner, scolarityCode);
         report.profession_principale = stringFromSpinner(professionPrincipaleSpinner, professionCode);
-//        TODO GPS
+        report.coordonnees_gps = coordonnees_gps;
         report.perte_connaissance = stringFromSpinner(perteConnaissanceSpinner, pertesConnaissanceCode);
         report.absence_contact = stringFromSpinner(oNNspMapSpinner, oNNspMapCode);
         report.secousses_anormaux_incontrolables = stringFromSpinner(secousMapSpinner, oNNspMapCode);
@@ -411,6 +442,7 @@ public class RegisterActivity extends CheckedFormActivity {
         setWithIndexOnSpinner(antiEpiMSpinner, antiEpiMCode, report.anti_epilepique_moderne);
         setWithIndexOnSpinner(priseMTSpinner, priseMMCode, report.prise_medicaments_traditionnels);
 //      TODO ADD GET GPS
+        btnShowLocation.setText("GPS (" + report.coordonnees_gps + ")");
         if (report.antecedents_familiaux == 0) {
             checkOnRadio(antecedentFlleG, R.id.antecedentFlleNon);
         } else {

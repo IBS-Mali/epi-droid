@@ -132,7 +132,7 @@ public class Utils extends AppCompatActivity {
     }
 
     public static String getStringSexe(int sexe) {
-        if (sexe==1){
+        if (sexe==0){
             return "m";
         } else {
             return "f";
