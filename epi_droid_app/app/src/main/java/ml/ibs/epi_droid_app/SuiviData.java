@@ -11,20 +11,19 @@ public class SuiviData extends BaseData {
     @Ignore
     private static final String TAG = Constants.getLogTag("SuiviData");
 
-
     Date visite_date = null;
     String idPatient = "";
     String observance = "";
     int effets_indesirable = -1;
     String lesquelles = "";
     int crise = -1;
+    Float poids = Float.valueOf(-1);
     String frenquence = "";
     String intensite = "";
     Boolean isSend = false;
     Boolean isSave = false;
 
     public SuiviData() {}
-
 
     public static SuiviData get() {
         SuiviData report = getUniqueRecord(SuiviData.class);
@@ -47,6 +46,7 @@ public class SuiviData extends BaseData {
         report.visite_date = null;
         report.idPatient = "";
         report.observance = "";
+        report.poids = Float.valueOf(-1);
         report.effets_indesirable = -1;
         report.lesquelles = "";
         report.crise = -1;
@@ -56,11 +56,13 @@ public class SuiviData extends BaseData {
         report.isSave = false;
         report.safeSave();
     }
+
     public String buildSMSText() {
         return  Constants.keySuivi + Constants.sepaData +
                 Utils.dateTostrDate(this.visite_date) + Constants.sepaData +
                 this.idPatient + Constants.sepaData +
                 this.observance + Constants.sepaData +
+                this.poids  + Constants.sepaData +
                 this.effets_indesirable + Constants.sepaData +
                 this.lesquelles + Constants.sepaData +
                 this.crise + Constants.sepaData +

@@ -35,10 +35,20 @@
             android:id="@+id/nbPlaquette"
             style="@style/editText"
             android:hint="Nombre plaquette vide" />
+
+        <TextView
+            style="@style/titleLabel"
+            android:text="Poids du patient" />
+        <EditText
+            android:id="@+id/poidsField"
+            style="@style/editText"
+            android:hint="Poids"
+            android:inputType="numberDecimal"/>
         <TextView
             android:id="@+id/effeteText"
             style="@style/titleLabel"
             android:text="Effets indésirables ?" />
+
         <RadioGroup
             android:id="@+id/effetsRadioG"
             android:layout_width="match_parent"

@@ -1,0 +1,1 @@
+alter table SUIVI_DATA add POIDS TEXT;

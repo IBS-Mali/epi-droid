@@ -20,6 +20,7 @@ public class SuiviActivity extends CheckedFormActivity {
     private DatePicker dateVisiteField;
     private EditText idPatientField;
     private EditText nbPlaquetteField;
+    private EditText poidsField;
     private RadioGroup effetsRadioG;
     private EditText lesEffetsField;
     private RadioGroup criseRadioG;
@@ -85,6 +86,7 @@ public class SuiviActivity extends CheckedFormActivity {
         idPatientField = findViewById(R.id.idPatient);
         dateVisiteField = findViewById(R.id.dateVisite);
         nbPlaquetteField = findViewById(R.id.nbPlaquette);
+        poidsField = findViewById(R.id.poidsField);
         effetsRadioG = findViewById(R.id.effetsRadioG);
         lesEffetsField = findViewById(R.id.lesEffets);
         criseRadioG = findViewById(R.id.criseRadioG);
@@ -104,6 +106,7 @@ public class SuiviActivity extends CheckedFormActivity {
         report.visite_date = Utils.getDateFromDatePicker(dateVisiteField);
         report.idPatient = stringFromField(idPatientField);
         report.observance = stringFromField(nbPlaquetteField);
+        report.poids = floatFromField(poidsField);
         report.effets_indesirable = getIntOnRadioGroup(effetsRadioG);
         report.lesquelles = stringFromField(lesEffetsField);
         report.crise = getIntOnRadioGroup(criseRadioG);
@@ -120,6 +123,7 @@ public class SuiviActivity extends CheckedFormActivity {
         setDatetoDatePicker(dateVisiteField, report.visite_date);
         setTextOnField(idPatientField, report.idPatient);
         setTextOnField(nbPlaquetteField, report.observance);
+        setTextOnField(poidsField, report.poids);
         if (report.effets_indesirable==1) {
             checkOnRadio(effetsRadioG, R.id.effetOui);
         } else {

@@ -53,7 +53,7 @@ public class RegisterActivity extends CheckedFormActivity {
     private Spinner professionPrincipaleSpinner;
     private Spinner perteConnaissanceSpinner;
     private String villige_code;
-    private TextView dateField;
+//    private TextView dateField;
     private List spinnerArray;
     private List spinnerArrayCode;
     private ArrayList<String> ethniesCode;
